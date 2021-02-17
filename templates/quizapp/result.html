@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--====styling=====-->
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <!--===Poppins===-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<!--======Boxicons======-->
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="result">
+        <div class="img_result">
+            <img src="{% static 'img/trophy.svg' %}" alt="">
+        </div>
+        <h1>Congratulation</h1>
+        <h3>Your score</h3>
+        <p>20/20</p>
+        <h3>Earned points</h3>
+        <p><i class='bx bxs-coin-stack'></i>{{result}}</p>
+        <div class="btns">
+            <a href="" class="button-light" onclick="window.print()"><i class='bx bxs-share' ></i>Share results</a>
+            <a href="{% url 'home' %}"class="button-light" id="share"><i class='bx bx-arrow-back' ></i>Back to home</a>
+        </div>
+    </section>
+</body>
+
+</html>
