@@ -146,7 +146,7 @@ html{
      border: solid 2px #141414;
      border-radius: 10px;
      text-align: center;
-     font-size: 14pt;
+     font-size: 10pt;
      margin-right: 31px;
      transition: .4s;
      width: 100%;
@@ -262,6 +262,11 @@ html{
    #question{
        font-size: 16pt;
  }
+   .custom-choose input[type='radio'] + label,.custom-choose input[type='radio']:not(checked) + label
+ ,.custom-choose input[type='checkbox'] + label,.custom-choose input[type='checkbox']:not(checked) + label
+ {
+ font-size:12pt;
+ }
  }
  @media screen and (min-width:1020px){
    body{
@@ -277,6 +282,11 @@ html{
  {
    margin-right:0 ;
      width: 60%;
+ }
+  .custom-choose input[type='radio'] + label,.custom-choose input[type='radio']:not(checked) + label
+ ,.custom-choose input[type='checkbox'] + label,.custom-choose input[type='checkbox']:not(checked) + label
+ {
+ font-size:14pt;
  }
  .choice-container li{
    left: -70px;
