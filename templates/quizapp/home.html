@@ -81,10 +81,14 @@
                 </section>
                 <div class="hero__btns" id="share_register_btn">
                     <button class="button" id="copy-btn" ><i class='bx bxs-share ' ></i>Share</button>
-                    <button class ="button-light" id="about"><i class='bx bx-info-circle'></i>About</button>
+
 
                 </div>
-                <!-- The Modal -->
+                <div class="hero__btns" id="play_btn">
+                    <a href="{% url 'quiz' quiz.id %}" class="button"><i class='bx bx-play'></i>Play</a>
+                    <button class ="button-light" id="about"><i class='bx bx-info-circle'></i>About</button>
+                </div>
+                 <!-- The Modal -->
                 <div id="myModal" class="modal">
                     <!-- Modal content -->
                     <div class="modal-content">
@@ -93,15 +97,9 @@
                     <p>Time allowed - {{quiz.time_allowed}} seconds</p>
                     <p>Starts in - {{quiz.start_date}} </p>
                     <p>Ends in - {{quiz.end_date}}</p>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="button-light get-notified" style="margin:1rem auto; width:120pt;"><i class='bx bx-bell'></i>Get notified</button>
-                    </form>
-                    </div>
-                </div>
 
-                <div class="hero__btns" id="play_btn">
-                    <a href="{% url 'quiz' quiz.id %}" class="button"><i class='bx bx-play'></i>Play</a>
+                        <a href="" class="button-light">Start</a>
+                    </div>
                 </div>
                 <div class="copied-msg-container">
                     <p id="copied-msg">Copied!</p>

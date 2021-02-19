@@ -482,7 +482,10 @@ a,p,h1,h2,h3,h4,h5,h6{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgb(158 158 158 / 6%); /* Black w/ opacity */
   }
-
+    .modal-content a{
+      text-align:center;
+      margin: 1rem auto;
+  }
   /* Modal Content/Box */
   .modal-content {
       position: relative;
