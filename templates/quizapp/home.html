@@ -51,11 +51,11 @@
             </div>
         </section>
    
-<!--        <div class="registered-msg-container">-->
-<!--            {% for message in messages %}-->
-<!--            <p id ="info-msg" class="registered-msg">{{message}}</p>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
+        <div class="registered-msg-container">
+            {% for message in messages %}
+            <p id ="info-msg" class="registered-msg">{{message}}</p>
+            {% endfor %}
+        </div>
          {% if request.user.is_authenticated %}
                 <section class="hero-body section">
             <div class="hero__img ">
@@ -81,9 +81,22 @@
                 </section>
                 <div class="hero__btns" id="share_register_btn">
                     <button class="button" id="copy-btn" ><i class='bx bxs-share ' ></i>Share</button>
-                    <button class ="button-light">Register</button>
-                    
+                    <button class ="button-light" id="about"><i class='bx bx-info-circle'></i>About</button>
+
                 </div>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <i class='bx bx-x ' id="close-btn"></i>
+                    <h1>General Knowledge quiz</h1>
+                    <p>Number of questions - 10</p>
+                    <p>Time allowed - 15 sec </p>
+                    <p>Starts in - </p>
+                    <p>Ends in - </p>
+                    </div>
+                </div>
+
                 <div class="hero__btns" id="play_btn">
                     <a href="{% url 'quiz' quiz.id %}" class="button"><i class='bx bx-play'></i>Play</a>
                 </div>
@@ -203,14 +216,14 @@
                document.getElementById("play_btn").style.display = "block"
                document.getElementById("share_register_btn").style.display = "none"
           headline.innerText = "The Quiz ends in";
-          
+
           let end = "{{end_month}} {{end_day}}, {{end_year}} {{end_hour}}:{{end_minute}}:{{end_second}}",
           countDown = new Date(end).getTime(),
           y = setInterval(function() {
-    
+
             let now = new Date().getTime(),
                 time_left = countDown - now;
-    
+
             document.getElementById("days").innerText = Math.floor(time_left / (day)),
               document.getElementById("hours").innerText = Math.floor((time_left % (day)) / (hour)),
               document.getElementById("minutes").innerText = Math.floor((time_left % (hour)) / (minute)),
@@ -228,11 +241,20 @@
                 clearInterval(y);
               }
           }, 0)
-          
+
           //seconds
         }
 
       }, 0)
   }());
+  close_btn = document.getElementById("close-btn")
+open_btn = document.getElementById("about")
+popup = document.querySelector(".modal")
+open_btn.addEventListener("click", function(){
+    popup.style.display = "block"
+})
+close_btn.addEventListener("click", function(){
+    popup.style.display = "none"
+})
 </script>
 </html>
