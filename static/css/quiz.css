@@ -189,7 +189,7 @@ html{
  svg {
    position: absolute;
    top: -104px;
-   right: 14px;
+   right: 15px;
    width: 45px;
    height: 45px;
    transform: rotateY(-180deg) rotateZ(-90deg);
