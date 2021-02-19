@@ -125,6 +125,7 @@ a,p,h1,h2,h3,h4,h5,h6{
     color: #141414;
     text-align: center;
 }
+
 .hero__btns{
     margin: auto;
     text-align: center;
@@ -169,6 +170,9 @@ a,p,h1,h2,h3,h4,h5,h6{
     border: 2px solid #3C3CC2;
     width: 100px;
     text-align: center;
+    background-color: #fff;
+    font-size: 16px;
+    font-family: "poppins", sans-serif;
 
 }
 .copied-msg-container{
@@ -186,6 +190,28 @@ a,p,h1,h2,h3,h4,h5,h6{
     font-weight: 700;
     border-radius: 5px;
     width: fit-content;
+}
+.registered-msg-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.registered-msg{
+    color: rgb(54 177 103);
+    margin-top: 0.5rem;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(212, 255, 229);
+    font-weight:500;
+    border-radius: 5px;
+    width: fit-content;
+    position: fixed;
+}
+.registered-msg i{
+    position:fixed;
+    right:25%;
+    margin: 0.2rem 0;
 }
 #link{
    display: none;
@@ -304,44 +330,6 @@ a,p,h1,h2,h3,h4,h5,h6{
     text-align: center;
     color: #3C3CC2;
 }
-/* The Modal (background) */
-.modal {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-
-  /* The Close Button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
 
 /*===== FOOTER =====*/
 .section{
@@ -482,7 +470,6 @@ a,p,h1,h2,h3,h4,h5,h6{
     justify-content: center;
 }
 
-
 /*=======tablet===========*/
 @media screen and (min-width:768px){
     .hero__title{
@@ -492,12 +479,13 @@ a,p,h1,h2,h3,h4,h5,h6{
         font-size: 1.3rem;
     }
     .button{
-        width: 150px;
         padding: 0.9rem;
+        width: 130px;
     }
     .button-light{
         width: 150px;
         padding: 0.9rem;
+        margin-left: 1rem;
     }
 
     .hiw-container{
@@ -513,6 +501,12 @@ a,p,h1,h2,h3,h4,h5,h6{
     }
     .nav__list{
         margin: 1rem 1rem;
+    }
+    #play{
+    font-size:16pt;
+    position: relative;
+    top:0;
+    left:0;
     }
     .ads{
         justify-content: flex-end;
@@ -538,8 +532,11 @@ a,p,h1,h2,h3,h4,h5,h6{
         text-align: start;
     }
     .hero__btns{
+        display: flex;
+        justify-content:start;
         text-align: start;
     }
+
     .button{
         width: 150px;
         padding: 0.9rem;
