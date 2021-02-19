@@ -146,7 +146,7 @@ html{
      border: solid 2px #141414;
      border-radius: 10px;
      text-align: center;
-     font-size: 10pt;
+     font-size: 10.5pt;
      margin-right: 31px;
      transition: .4s;
      width: 100%;
@@ -189,7 +189,7 @@ html{
  svg {
    position: absolute;
    top: -104px;
-   right: 13px;
+   right: 14px;
    width: 45px;
    height: 45px;
    transform: rotateY(-180deg) rotateZ(-90deg);
