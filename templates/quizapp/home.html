@@ -89,11 +89,13 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                     <i class='bx bx-x ' id="close-btn"></i>
-                    <h1>General Knowledge quiz</h1>
-                    <p>Number of questions - 10</p>
-                    <p>Time allowed - 15 sec </p>
-                    <p>Starts in - </p>
-                    <p>Ends in - </p>
+                    <h1>{{quiz.topic}}</h1>
+                    <p>Time allowed - {{quiz.time_allowed}} seconds</p>
+                    <p>Starts in - {{quiz.start_date}} </p>
+                    <p>Ends in - {{quiz.end_date}}</p>
+                    <form action="" method="post">
+                        <button type="submit" class="button-light get-notified" style="margin:1rem auto;"><i class='bx bx-bell'></i>Get notified</button>
+                    </form>
                     </div>
                 </div>
 

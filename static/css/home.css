@@ -501,7 +501,7 @@ a,p,h1,h2,h3,h4,h5,h6{
   }
 
   /* The Close Button */
-  .modal-content i{
+  #close-btn{
     color: #141414;
     position: absolute;
     top:5px;
