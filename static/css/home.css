@@ -168,7 +168,7 @@ a,p,h1,h2,h3,h4,h5,h6{
     border-radius: 0.5rem;
     transition: 0.3s;
     border: 2px solid #3C3CC2;
-    width: 100px;
+    width: 120px;
     text-align: center;
     background-color: #fff;
     font-size: 15px;
@@ -562,7 +562,7 @@ a,p,h1,h2,h3,h4,h5,h6{
         width: 120px;
     }
     .button-light{
-        width: 120px;
+        width: 150px;
         padding: 0.9rem;
         margin-left: 1rem;
     }
