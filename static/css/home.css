@@ -559,10 +559,10 @@ a,p,h1,h2,h3,h4,h5,h6{
     }
     .button{
         padding: 0.9rem;
-        width: 130px;
+        width: 120px;
     }
     .button-light{
-        width: 150px;
+        width: 120px;
         padding: 0.9rem;
         margin-left: 1rem;
     }
@@ -621,11 +621,11 @@ a,p,h1,h2,h3,h4,h5,h6{
     }
 
     .button{
-        width: 150px;
+        width: 120px;
         padding: 0.9rem;
     }
     .button-light{
-        width: 150px;
+        width: 120px;
         padding: 0.9rem;
     }
 
