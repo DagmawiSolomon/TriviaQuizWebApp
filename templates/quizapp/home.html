@@ -81,24 +81,29 @@
                 </section>
                 <div class="hero__btns" id="share_register_btn">
                     <button class="button" id="copy-btn" ><i class='bx bxs-share ' ></i>Share</button>
-                    <button class="button-light" style="width:140px;"><i class='bx bx-bell'></i></button>
-                </div>
-                <div class="hero__btns" id="play_btn">
-                    <a href="{% url 'quiz' quiz.id %}" class="button"><i class='bx bx-play'></i>Play</a>
                     <button class ="button-light" id="about"><i class='bx bx-info-circle'></i>About</button>
+
                 </div>
-                 <!-- The Modal -->
+                <!-- The Modal -->
                 <div id="myModal" class="modal">
                     <!-- Modal content -->
                     <div class="modal-content">
-                    <i class='bx bx-x ' id="close-btn"></i>
-                    <h1>{{quiz.topic}}</h1>
-                    <p>Time allowed - {{quiz.time_allowed}} seconds</p>
-                    <p>Starts in - {{quiz.start_date}} </p>
-                    <p>Ends in - {{quiz.end_date}}</p>
-
-                        <a href="" class="button-light">Start</a>
+                    <h1>Some rules of this quiz</h1>
+                    <p>1. You will have only <span>{{quiz.time_allowed}} seconds</span> for each question.</p>
+                    <p>2. Once you select your answer, it can't be undone.</p>
+                    <p>3. You can't select any option once time goes off.</p>
+                    <p>4. You can't exit from the Quiz while you're playing.</p>
+                    <p>5. You'll get points on the basis of your correct answers.</p>
+                    <div class ="button_container">
+                        <a href="" id="close-btn">Close</a>
+                        <a href="{% url 'quiz' quiz.id %}">Continue</a>
                     </div>
+                </div>
+
+                </div>
+
+                <div class="hero__btns" id="play_btn">
+                    <a href="" class="button"><i class='bx bx-play'></i>Play</a>
                 </div>
                 <div class="copied-msg-container">
                     <p id="copied-msg">Copied!</p>
