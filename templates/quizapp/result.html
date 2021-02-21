@@ -14,6 +14,29 @@
 </head>
 <body>
     <section class="result">
+        <section class="ad">
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div id="countdown-number">60</div>
+                    <svg class="svg">
+                        <circle r="18" cx="20" cy="20"></circle>
+                      </svg>
+                    <i class='bx bx-x close-btn' ></i>
+                    <video  class="video-ad" id="video" controls autoplay>
+                        <source src="{% static 'img/yt1s.com - Python Is Easy  Learn the Fundamentals of Python 3.mp4' %}" type="video/mp4">
+                          Your browser does not support the video tag.
+                    </video>
+                      <h1>Quality Graphics & Logos <span>AD</span></h1>
+                      <p>Logo Design|Truck-Boat-Car-Trailer Graphics|Since 2002</p>
+                      <div class="btn-container">
+                        <a href="#" class="btn_cta">Open</a>
+                      </div>
+                </div>
+
+              </div>
+        </section>
         <div class="img_result">
             <img src="{% static 'img/trophy.svg' %}" alt="">
         </div>
@@ -28,5 +51,34 @@
         </div>
     </section>
 </body>
+<script>
 
+    var countdownNumberEl = document.getElementById('countdown-number');
+    var countdown = 60;
+    var svgCircle = document.querySelector(".svg circle")
+    var closeAdButton = document.querySelector(".close-btn")
+    var adPopup = document.querySelector(".ad")
+    var x = document.getElementById("video").autoplay;
+    countdownNumberEl.textContent = countdown;
+
+    setInterval(function() {
+        countdown = -- countdown
+        if (countdown <= 0){
+            countdownNumberEl.style.display = "none"
+            closeAdButton.style.opacity = "1"
+            closeAdButton.style.display = "block"
+            svgCircle.style.display = "none"
+            countdown = "0"
+            closeAdButton.addEventListener("click", function(){
+                adPopup.style.display = "none"
+            })
+        }
+        else if(countdown < 10){
+            countdown = "0" + countdown
+        }
+        countdownNumberEl.textContent = countdown;
+
+
+    }, 1000);
+</script>
 </html>
