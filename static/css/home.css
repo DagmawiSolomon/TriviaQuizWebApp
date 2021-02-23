@@ -159,6 +159,12 @@ a,p,h1,h2,h3,h4,h5,h6{
     position: relative;
     top: 3px;
 }
+.share_register_btn button{
+width:150px;
+}
+.share_register_btn button-light{
+width:130px
+}
 .button-light{
     position: relative;
     display: inline-block;
