@@ -108,3 +108,8 @@ def result(request):
     results = results.score
     context = {"result": results}
     return render(request, "quizapp/result.html", context)
+
+
+def statistics(request):
+    context = {}
+    return render(request, "quizapp/statistics.html", context)
