@@ -46,7 +46,7 @@ a,p,h1,h2,h3,h4,h5,h6{
         width: 70%;
         height: 50Vh;
         padding:2rem;
-        background-color:#606060;
+        background-color:#ffffff;
         transition: .5s;
     }
     .nav__list{
