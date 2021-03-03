@@ -16,28 +16,44 @@
 <body>
     <section class="hero">
         <header>
-            <nav class="nav">
-                <ul>
-                    <li><a href="" class="nav__logo">Logo</a></li>
+                   <nav class="nav">
+            <ul>
+                <li><a href="{% url 'home' %}" class="nav__logo">Logo</a></li>
+            </ul>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav__item"><a href="{% url 'profile' %}" class="nav_link ">Leaderboard</a></li>
+                    <li id="profiledropdown">
+                      <div class="profiledropdown">
+                        <img src="{% static 'img/profile.svg' %}" alt="">
+                      </div>
+                    </li>
+                    <div class="userprofile" id="userprofile">
+                      <div class="img">
+                        <img src="{% static 'img/profile.svg' %}" alt="">
+                        <div class="upload-img">
+                          <p>+</p>
+                        </div>
+                      </div>
+                      <h4>John Doe</h4>
+                      <p class="email">john@gmail.com</p>
+                      <div class="button_container">
+                        <a href="{% url 'account_logout' %}">Logout</a>
+                      </div>
+                    </div>
+                    {% else%}
+                    <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
+                    <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
+                    {% endif %}
                 </ul>
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
+            </div>
+            <ul class="nav__toogle" id="nav-toggle" >
+                <i class='bx bxs-grid '></i>
+            </ul>
 
-                        {% if request.user.is_authenticated %}
-                         <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link">Leaderboard</a></li>
-                        <li class="nav__item"><a href="{% url 'account_logout' %}" class="nav_link btn">Logout</a></li>
-                        {% else%}
-                        <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
-                        <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <ul class="nav__toogle" id="nav-toggle" >
-                    <i class='bx bxs-grid '></i>
-                </ul>
-
-            </nav>
-
+        </nav>
         </header>
         <section class="ads">
             <div class="ad-silver">

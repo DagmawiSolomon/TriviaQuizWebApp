@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--====styling=====-->
-    <link rel="stylesheet" href="{% static 'css/statistics.css' %}">
+    <link rel="stylesheet" href="{% static 'css\statistics.css' %}">
     <!--===Poppins===-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-               <nav class="nav">
+        <nav class="nav">
             <ul>
                 <li><a href="{% url 'home' %}" class="nav__logo">Logo</a></li>
             </ul>
@@ -62,7 +62,7 @@
                 <img src="{% static 'img/logo-colour.d534143b.svg' %}" alt="">
             </div>
             <div class="description">
-                <h2 class="data">Coca cola <span class="close"><i class='bx bx-x'></i></span></h2>
+                <h2 class="data">Coca cola <span class="close"><i class='bx bx-x'></i>close</span></h2>
                 <p class="desc">The essential app for every designer. Generate and collect beautiful color palettes on the go.</p>
                 <a href="">Visit now</a>
             </div>
@@ -81,26 +81,36 @@
         <div class="card">
           <p class="rank first">1</p>
           <img src="{% static 'img/profile.svg' %}" alt="">
-          <p class="name">John Doe</p>
-          <p class="score">1000</p>
+          <div class="user-info">
+            <p class="name">John Doe</p>
+            <p class="score">1000</p>
+          </div>
         </div>
         <div class="card">
           <p class="rank second">2</p>
           <img src="{% static 'img/profile.svg' %}" alt="">
-          <p class="name">John Doe</p>
-          <p class="score">1000</p>
+          <div class="user-info">
+            <p class="name">Jane Doe</p>
+            <p class="score">1000</p>
+          </div>
         </div>
         <div class="card">
           <p class="rank third">3</p>
           <img src="{% static 'img/profile.svg' %}" alt="">
-          <p class="name">John Doe</p>
-          <p class="score">1000</p>
+          <div class="user-info">
+            <p class="name">Tom Doe</p>
+            <p class="score">1000</p>
+          </div>
         </div>
         <div class="card">
-          <p class="rank">4</p>
+          <p class="rank normal">4</p>
           <img src="{% static 'img/profile.svg' %}" alt="">
-          <p class="name">John Doe</p>
-          <p class="score">1000</p>
+          <div class="user-info">
+            <p class="name">Peter Doe</p>
+            <p class="score">1000</p>
+          </div>
+        </div>
+
         </div>
       </div>
 
