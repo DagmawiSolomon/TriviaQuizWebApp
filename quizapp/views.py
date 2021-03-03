@@ -113,3 +113,4 @@ def result(request):
 def leaderboard(request):
     context = {}
     return render(request, "quizapp/statistics.html", context)
+
