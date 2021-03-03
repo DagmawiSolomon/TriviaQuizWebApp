@@ -24,7 +24,7 @@
                     <ul class="nav__list">
 
                         {% if request.user.is_authenticated %}
-                         <li class="nav__item"><a href="{% url 'statistics' %}" class="nav_link">Leaderboard</a></li>
+                         <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link">Leaderboard</a></li>
                         <li class="nav__item"><a href="{% url 'account_logout' %}" class="nav_link btn">Logout</a></li>
                         {% else%}
                         <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
