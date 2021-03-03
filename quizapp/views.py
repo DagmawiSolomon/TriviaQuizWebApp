@@ -110,6 +110,6 @@ def result(request):
     return render(request, "quizapp/result.html", context)
 
 
-def statistics(request):
+def leaderboard(request):
     context = {}
     return render(request, "quizapp/statistics.html", context)
