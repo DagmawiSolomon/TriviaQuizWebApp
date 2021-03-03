@@ -24,7 +24,7 @@
                 <ul class="nav__list">
 
                     {% if request.user.is_authenticated %}
-                    <li class="nav__item"><a href="{% url 'statistics' %}" class="nav_link btn">Dashboard</a></li>
+                    <li class="nav__item"><a href="{% url 'profile' %}" class="nav_link ">Leaderboard</a></li>
                     <li class="nav__item"><a href="{% url 'account_logout' %}" class="nav_link btn">Logout</a></li>
                     {% else%}
                     <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
@@ -51,104 +51,45 @@
             </div>
         </div>
     </section>
-    <section class="userdata">
-        <div class="title">
-            <h1>Overview</h1>
+   <section class="leaderBoard">
+     <h1>Leaderboard</h1>
+     <div class="circles">
+       <div id="profile">
+         <img src="{% static 'img/profile.svg' %}" alt="">
+         <h1>John Doe</h1>
+         <h1 id="score"><i class='bx bx-coin-stack'> </i>1000</h1>
+       </div>
+      </div>
+      <div class="table">
+        <div class="card">
+          <p class="rank first"><i class='bx bxs-medal' ></i>1st</p>
+          <img src="{% static 'img/profile.svg' %}" alt="">
+          <p class="name">John Doe</p>
+          <p class="score">1000</p>
         </div>
-        <section>
-            <div class="card">
-                <i class='bx bx-medal'></i>
-                <h1>Score</h1>
-                <p>20/20</p>
-            </div>
-            <div class="card">
-                <i class='bx bxs-coin-stack' ></i>
-                <h1>Points</h1>
-                <p>200</p>
-            </div>
-            <div class="card">
-                <i class='bx bx-trophy' ></i>
-                <h1>Rank</h1>
-                <p> 1</p>
-            </div>
-        </section>
-        <div class="tabel">
-            <table>
-                <thead>
-                    <caption>Recent activity</caption>
-                  <tr>
-                    <th scope="col">Rank</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td data-label="rank">1</td>
-                    <td data-label="username">John Doe</td>
-                    <td data-label="point">9/10</td>
-                    <td data-label="score">900</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">2</td>
-                    <td scope="row" data-label="username">Jane Doe</td>
-                    <td data-label="point">8/10</td>
-                    <td data-label="score">800</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">3</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">4</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">5</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">6</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">7</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">8</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">9</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">7/10</td>
-                    <td data-label="score">700</td>
-                  </tr>
-                  <tr>
-                    <td data-label="rank">10</td>
-                    <td scope="row" data-label="username">Will Smith</td>
-                    <td data-label="point">5/10</td>
-                    <td data-label="score">500</td>
-                  </tr>
+        <div class="card">
+          <p class="rank second"><i class='bx bxs-medal' ></i>2nd</p>
+          <img src="{% static 'img/profile.svg' %}" alt="">
+          <p class="name">John Doe</p>
+          <p class="score">1000</p>
+        </div>
+        <div class="card">
+          <p class="rank third"><i class='bx bxs-medal' ></i>3rd</p>
+          <img src="{% static 'img/profile.svg' %}" alt="">
+          <p class="name">John Doe</p>
+          <p class="score">1000</p>
+        </div>
+        <div class="card">
+          <p class="rank">4th</p>
+          <img src="{% static 'img/profile.svg' %}" alt="">
+          <p class="name">John Doe</p>
+          <p class="score">1000</p>
+        </div>
+      </div>
 
-                </tbody>
-              </table>
-        </div>
-    </section>
+
+
+   </section>
 </body>
 <script src="{% static 'JS/main.js' %}"></script>
 </html>
