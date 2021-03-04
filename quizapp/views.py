@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Quiz, Questions, Answer, Result
 from django.core.paginator import Paginator
 import datetime
-
+import time
 
 # create your views here.
 
@@ -49,13 +49,16 @@ def quiz(request, pk):
         result.save()
     if request.method == "POST":
         answer_inputted = request.POST.get("choice")
+        print(request.POST.get("response-time"))
         if request.POST.get("input") == "Finish":
+            print("iiiddssd")
             answer = Answer.objects.filter(text=answer_inputted)
             if answer[0].correct:
                 r = Result.objects.get(user=request.user, quiz=quiz)
                 r.score += 100
                 r.save()
             elif not answer[0].correct:
+                print("post")
                 print("wrong")
                 r = Result.objects.get(user=request.user, quiz=quiz)
                 r.score += 0

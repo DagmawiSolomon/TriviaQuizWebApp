@@ -26,6 +26,7 @@
               <li>Score</li>
               <li id="score">{{result}}</li>
           </ul>
+        </div>
     </section>
 
     <section class="body-container">
@@ -34,9 +35,9 @@
             {% for q in page_obj%}
                 <a href="" class="next"></a>
                 {% if page_obj.has_next %}
-                    <form action="?page={{ page_obj.next_page_number }}" method="post" id="quizForm">
+                <form action="?page={{ page_obj.next_page_number }}" method="post" id="quizForm">
                 {% else %}
-                    <form action="" method="post" id="redirectForm" >
+                <form action="" method="post">
                 {% endif %}
                         {% csrf_token %}
                         <h3 id ="question">{{q}}?</h3>
@@ -44,7 +45,7 @@
                                 <div class="custom-choose">
                                     {% for choice in q.answer_set.all %}
                                     <li>
-                                        <input type="radio" id="choice-{{choice.id}}"  name="choice" value="{{choice.text}}" >
+                                        <input type="radio" id="choice-{{choice.id}}"  name="choice" value="{{choice.text}}"  >
                                         {% if choice.correct %}
                                         <label for="choice-{{choice.id}}" class="choices_btn" id="correct">
                                         {{choice.text}}
@@ -58,27 +59,28 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                        <div class="btn">
+                           <input type="text" name="response-time" value="" id="response-time">
+                        <div class="btn-container">
                             <div class="pagination">
                                 <span class="step-links">
                                     {% if page_obj.has_next %}
-                                    <button type="submit" class="next">Next<i class='bx bx-right-arrow-alt'></i></button>
                                     {% else %}
                                     <a href="{% url 'home' %}">
-                                        <input type="submit" name="input" value="Finish" class="next"/>
+                                        <input type="submit" name="input" value="Finish" class="next"/><i class='bx bx-right-arrow-alt'></i>
                                       </a>
                                     {% endif %}
                                 </span>
+
                             </div>
                         </div>
+
                     </form>
+                </form>
             {% endfor %}
 
 
 
         </section>
-
-
     </section>
 
 </body>
@@ -95,7 +97,7 @@
     var svgCircle = document.querySelector(".svg circle")
     countdownNumberEl.textContent = countdown;
     setInterval(function() {
-        countdown = -- countdown
+      // countdown = -- countdown
         if (countdown <= 0){
             document.getElementById("quizForm").submit()
              countdown = "  "
@@ -114,7 +116,7 @@
 
 
     }, 1000);
-    
+
 var choices = document.querySelector(".custom-choose")
 var choices_li = choices.getElementsByTagName('li')
 var choices_count = choices.getElementsByTagName('li').length
@@ -125,7 +127,7 @@ var btn = document.querySelectorAll('.choices_btn');
 var finish_btn = document.getElementById('finish')
 document.querySelectorAll('.choices_btn').forEach(item => {
     item.addEventListener('click', event => {
-        
+
             if (item.id == "correct"){
                 item.style.backgroundColor =" #d4edda"
                 item.style.color = "#155724"
@@ -147,6 +149,41 @@ document.querySelectorAll('.choices_btn').forEach(item => {
 
 })
 })
+
+window.addEventListener("load", function(){
+    console.log("hello")
+})
+    var seconds = 00;
+    var tens = 00;
+    var responseTime =  document.getElementById("response-time")
+    var buttonStop = document.querySelector('.custom-choose');
+
+    var Interval ;
+
+    window.onload = function() {
+
+       clearInterval(Interval);
+       Interval = setInterval(startTimer, 10);
+    }
+
+      buttonStop.onclick = function() {
+         clearInterval(Interval);
+    }
+    function startTimer () {
+      tens++;
+      responseTime.value = seconds
+      console.log(responseTime.value)
+      if (tens > 99) {
+        seconds++;
+        tens = 0;
+
+      }
+    }
+    x = document.querySelector('.custom-choose')
+    x.addEventListener("click", function(){
+        document.getElementById("quizForm").submit();
+      })
+
 
 </script>
 </html>

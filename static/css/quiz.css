@@ -73,6 +73,51 @@ html{
     font-family: "poppins",sans-serif;
     font-size: 16px;
 }
+.button_container{
+  width: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem ;
+}
+
+.button_container button:nth-child(2){
+  margin: 0 5px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #3C3CC2;
+  color:#3C3CC2;
+  transition: all 0.3s ease;
+  text-align:center;
+  padding: 10px;
+  background-color: #fff;
+  font-family: "poppins", sans-serif;
+}
+.button_container button:nth-child(1){
+  margin: 0 5px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color:#fff;
+  background-color: #3C3CC2;
+  border:1px solid #3C3CC2;
+  transition: all 0.3s ease;
+  text-align:center;
+  padding: 10px;
+  font-family: "poppins", sans-serif;
+}
+#response-time{
+  display: none;
+}
  .question{
      padding: 5px;
      margin: 2rem 0;
@@ -146,7 +191,7 @@ html{
      border: solid 2px #141414;
      border-radius: 10px;
      text-align: center;
-     font-size: 14px;
+     font-size: 14pt;
      margin-right: 31px;
      transition: .4s;
      width: 100%;
@@ -189,7 +234,7 @@ html{
  svg {
    position: absolute;
    top: -104px;
-   right: 13px;
+   right: 14px;
    width: 45px;
    height: 45px;
    transform: rotateY(-180deg) rotateZ(-90deg);
@@ -209,6 +254,10 @@ html{
    margin: 0 1rem;
 
  }
+ .pagination{
+   display:flex;
+   justify-content: flex-end;
+ }
  .next{
    background-color: #FFF;
    color: #141414;
@@ -216,7 +265,6 @@ html{
    margin: 0.5rem 0;
    font-family: "poppins", sans-serif;
    font-size: 14pt;
-   float: right;
    outline: none;
    cursor: pointer;
    margin: 1rem 0;
@@ -262,11 +310,6 @@ html{
    #question{
        font-size: 16pt;
  }
-   .custom-choose input[type='radio'] + label,.custom-choose input[type='radio']:not(checked) + label
- ,.custom-choose input[type='checkbox'] + label,.custom-choose input[type='checkbox']:not(checked) + label
- {
- font-size:12pt;
- }
  }
  @media screen and (min-width:1020px){
    body{
@@ -282,11 +325,6 @@ html{
  {
    margin-right:0 ;
      width: 60%;
- }
-  .custom-choose input[type='radio'] + label,.custom-choose input[type='radio']:not(checked) + label
- ,.custom-choose input[type='checkbox'] + label,.custom-choose input[type='checkbox']:not(checked) + label
- {
- font-size:14pt;
  }
  .choice-container li{
    left: -70px;
