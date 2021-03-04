@@ -27,6 +27,7 @@ a,p,h1,h2,h3,h4,h5,h6{
 .nav__item{
     margin: 0rem 1rem;
     font-size:1rem;
+
 }
 .nav__list{
     display: flex;
@@ -73,6 +74,7 @@ a,p,h1,h2,h3,h4,h5,h6{
     transition: 0.3s;
     border: 2px solid #3C3CC2;
     width: 230px;
+    margin: -2.5rem;
     }
 
 }
