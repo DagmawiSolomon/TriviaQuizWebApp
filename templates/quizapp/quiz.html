@@ -97,7 +97,7 @@
     var svgCircle = document.querySelector(".svg circle")
     countdownNumberEl.textContent = countdown;
     setInterval(function() {
-      // countdown = -- countdown
+      countdown = -- countdown
         if (countdown <= 0){
             document.getElementById("quizForm").submit()
              countdown = "  "
