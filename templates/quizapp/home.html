@@ -37,8 +37,8 @@
                           <p>+</p>
                         </div>
                       </div>
-                      <h4>John Doe</h4>
-                      <p class="email">john@gmail.com</p>
+                      <h4>{{ request.user }}</h4>
+                      <p class="email">{{request.user.email}}</p>
                       <div class="button_container">
                         <a href="{% url 'account_logout' %}">Logout</a>
                       </div>
