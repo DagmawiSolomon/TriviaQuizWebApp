@@ -13,6 +13,7 @@
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 {% if request.user.is_authenticated %}
+{% if res.completed == False %}
 <body id ="body">
     <section class="header">
         <a href="{% url 'home' %}"><i class='bx bx-left-arrow-alt'></i></a>
@@ -64,6 +65,7 @@
                             <div class="pagination">
                                 <span class="step-links">
                                     {% if page_obj.has_next %}
+                                    <button type="submit" class="next">Next<i class='bx bx-right-arrow-alt'></i></button>
                                     {% else %}
                                     <a href="{% url 'home' %}">
                                         <input type="submit" name="input" value="Finish" class="next"/><i class='bx bx-right-arrow-alt'></i>
@@ -84,6 +86,14 @@
     </section>
 
 </body>
+{% elif res.completed == True %}
+<div class="blocked-page">
+    <h1>You already attempted this quiz!</h1>
+    <a href="{% url 'home' %}" class="button-light"><i class='bx bx-arrow-back' ></i>Home</a>
+</div>
+{% else %}
+<H1>unkown error</H1>
+{% endif %}
 {% else %}
 <body class = "unauthenticated" style ="margin:1rem">
 <h1>Sorry, you are not allowed to view this page!</h1>
@@ -97,7 +107,7 @@
     var svgCircle = document.querySelector(".svg circle")
     countdownNumberEl.textContent = countdown;
     setInterval(function() {
-      countdown = -- countdown
+       countdown = -- countdown
         if (countdown <= 0){
             document.getElementById("quizForm").submit()
              countdown = "  "
@@ -149,10 +159,6 @@ document.querySelectorAll('.choices_btn').forEach(item => {
 
 })
 })
-
-window.addEventListener("load", function(){
-    console.log("hello")
-})
     var seconds = 00;
     var tens = 00;
     var responseTime =  document.getElementById("response-time")
@@ -180,9 +186,6 @@ window.addEventListener("load", function(){
       }
     }
     x = document.querySelector('.custom-choose')
-    x.addEventListener("click", function(){
-        document.getElementById("quizForm").submit();
-      })
 
 
 </script>

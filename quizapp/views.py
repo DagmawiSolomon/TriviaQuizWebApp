@@ -26,11 +26,14 @@ def home(request):
     end_hour = end.strftime("%H")
     end_minute = end.strftime("%M")
     end_second = end.strftime("%S")
-
+    if request.user.is_authenticated:
+        result = Result.objects.get(user=request.user, quiz=quiz)
+    else:
+         result = ''
     context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
                "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
                "end_day": end_day, "end_year": end_year, "end_month": end_month,
-               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second}
+               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result":result}
     return render(request, "quizapp/home.html", context)
 
 
@@ -46,12 +49,11 @@ def quiz(request, pk):
         print(result_qs)
     else:
         result = Result(user=request.user, quiz=quiz, score=0)
-        result.save( p.points)
+        result.save()
     if request.method == "POST":
         answer_inputted = request.POST.get("choice")
         print(request.POST.get("response-time"), "response_time")
         if request.POST.get("input") == "Finish":
-            p = Result.objects.get(user=request.user, quiz=quiz)
             answer = Answer.objects.filter(text=answer_inputted)
             if answer[1].correct:
                 print(answer[1], "answer2")
@@ -97,21 +99,20 @@ def quiz(request, pk):
                     r.save()
                 results = Result.objects.get(user = request.user, quiz = quiz)
                 results_qset = results.score
-                context = {"time_allowed": time_allowed, "page_obj": page_obj, "answer": answer, "result": results_qset}
+                context = {"time_allowed": time_allowed, "page_obj": page_obj, "answer": answer, "result": results_qset, 'res' : results}
                 return render(request, "quizapp/quiz.html", context)
 
             else:
                 HttpResponse(answer_inputted)
                 results = Result.objects.get(user=request.user, quiz=quiz)
                 results_qset = results.score
-                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": results_qset }
+                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": results_qset , "res": results}
                 return render(request, "quizapp/quiz.html", context)
     else:
         results = Result.objects.get(user=request.user, quiz=quiz)
         results_qset = results.score
-        context = {"quiz": quiz, "page_obj": page_obj, "time_allowed": time_allowed, "result": results_qset, "results":results}
+        context = {"quiz": quiz, "page_obj": page_obj, "time_allowed": time_allowed, "result": results_qset, "res": results}
         return render(request, "quizapp/quiz.html", context)
-
 
 
 def result(request):
@@ -121,7 +122,7 @@ def result(request):
     result = Result.objects.get(user=request.user, quiz=quiz)
     results = result.score
     point = result.points
-    context = {"result": results, "point": point, "q_count": q_count}
+    context = {"result": results, "point": point, "q_count":q_count}
     return render(request, "quizapp/result.html", context)
 
 
