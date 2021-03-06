@@ -52,6 +52,8 @@ class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+    points = models.IntegerField(default=0)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
