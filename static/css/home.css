@@ -31,7 +31,7 @@ a,p,h1,h2,h3,h4,h5,h6{
 }
 .nav__list{
     display: flex;
-    align-items: start;
+    align-items: center;
 }
 .nav__toogle i{
     font-size: 18pt;
@@ -41,7 +41,6 @@ a,p,h1,h2,h3,h4,h5,h6{
 .nav__link{
     padding: 0.7rem;
 }
-
 @media screen and (max-width:720px){
     .nav__menu{
             position: fixed;
@@ -54,20 +53,6 @@ a,p,h1,h2,h3,h4,h5,h6{
             transition: .5s;
             z-index: 1000;
 }
-#profiledropdown{
-    display: none;
-}
-.dashboard{
-    display:flex;
-    justify-content: space-around;
-}
-.dashboard_info{
-    margin-left: 1rem;
-}
-.profiledropdown {
-    width: 80px;
-    height: 80px;
-}
     .nav__list{
         display: flex;
         flex-direction: column;
@@ -77,7 +62,7 @@ a,p,h1,h2,h3,h4,h5,h6{
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-        font-size:1rem;
+        font-size:1.4rem;
     }
     .btn{
     position: relative;
@@ -598,7 +583,11 @@ a,p,h1,h2,h3,h4,h5,h6{
     text-align: center;
     margin-bottom: 0.5rem;
 }
-
+.profiledropdown{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
 
 .profiledropdown img{
     width: 100%;
@@ -646,18 +635,13 @@ a,p,h1,h2,h3,h4,h5,h6{
     text-align:center;
     padding: 10px;
 }
-.completed-message{
-    color: #70bf2b;
-    background-color: #ddffdd;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-.completed-message i{
-    margin-right: 0.5rem;
-}
+
+
+
+
+
+
+
 
 /*=======tablet===========*/
 @media screen and (min-width:768px){
@@ -690,8 +674,6 @@ a,p,h1,h2,h3,h4,h5,h6{
     }
     .nav__list{
         margin: 1rem 1rem;
-        display: flex;
-        flex-direction: row-reverse;
     }
     #play{
     font-size:16pt;
@@ -699,13 +681,6 @@ a,p,h1,h2,h3,h4,h5,h6{
     top:0;
     left:0;
     }
-    .completed-message{
-        display: flex;
-        width: fit-content;
-        align-items: center;
-        justify-content: start;
-
-      }
     .ads{
         justify-content: flex-end;
         margin: 1rem;
@@ -731,9 +706,7 @@ a,p,h1,h2,h3,h4,h5,h6{
         top: 90px;
         right: 8px;
     }
-    .dashboard{
-        display: none;
-    }
+
 
 
 }
