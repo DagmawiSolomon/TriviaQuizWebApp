@@ -30,15 +30,6 @@
                           <img src="{% static 'img/profile.svg' %}" alt="">
                         </div>
                       </li>
-                    <li class="dashboard">
-                        <div class="profiledropdown">
-                            <img src="{% static 'img/profile.svg' %}" alt="">
-                          </div>
-                        <div class="dashboard_info">
-                            <h4>{{request.user}}</h4>
-                            <p>{{request.user.email}}</p>
-                        </div>
-                    </li>
                     <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link ">Dashboard</a></li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
