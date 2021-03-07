@@ -3,6 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Quiz, Questions, Answer, Result
 from django.core.paginator import Paginator
+from django.db.models import Count, F
+from django.db.models.expressions import Func
+
 import datetime
 import time
 
@@ -53,30 +56,39 @@ def quiz(request, pk):
     if request.method == "POST":
         answer_inputted = request.POST.get("choice")
         if request.POST.get("input") == "Finish":
-            answer = Answer.objects.filter(text=answer_inputted)
-            if answer[1].correct:
-                print(answer[1], "answer2")
-                r = Result.objects.get(user=request.user, quiz=quiz)
-                print(r.score, "before")
-                response_time = request.POST.get("response-time")
-                r.score = r.score + (quiz.time_allowed - int(response_time)) * 10
-                r.points += 1
-                print(r.points, "----------------")
-                r.save()
-                print(r.score, "after")
-            elif not answer[1].correct:
+            if answer_inputted == None:
                 r = Result.objects.get(user=request.user, quiz=quiz)
                 r.score += 0
                 r.save()
+                set_result_tocompleted = Result.objects.get(user=request.user, quiz=quiz)
+                set_result_tocompleted.completed = True
+                set_result_tocompleted.save()
+                return redirect("/result")
             else:
-                r = Result.objects.get(user=request.user, quiz=quiz)
-                r.score += 0
-                r.save()
-                print("none")
-            set_result_tocompleted = Result.objects.get(user=request.user, quiz=quiz)
-            set_result_tocompleted.completed = True
-            set_result_tocompleted.save()
-            return redirect("/result")
+                answer = Answer.objects.filter(text=answer_inputted)
+                if answer[1].correct:
+                    print(answer[1], "answer2")
+                    r = Result.objects.get(user=request.user, quiz=quiz)
+                    print(r.score, "before")
+                    response_time = request.POST.get("response-time")
+                    r.score = r.score + (quiz.time_allowed - int(response_time)) * 10
+                    r.points += 1
+                    print(r.points, "----------------")
+                    r.save()
+                    print(r.score, "after")
+                elif not answer[1].correct:
+                    r = Result.objects.get(user=request.user, quiz=quiz)
+                    r.score += 0
+                    r.save()
+                else:
+                    r = Result.objects.get(user=request.user, quiz=quiz)
+                    r.score += 0
+                    r.save()
+                    print("none")
+                set_result_tocompleted = Result.objects.get(user=request.user, quiz=quiz)
+                set_result_tocompleted.completed = True
+                set_result_tocompleted.save()
+                return redirect("/result")
         else:
             if answer_inputted != None:
                 answer = Answer.objects.filter(text=answer_inputted)
@@ -109,9 +121,7 @@ def quiz(request, pk):
                 HttpResponse(answer_inputted)
                 results = Result.objects.get(user=request.user, quiz=quiz)
                 results_qset = results.score
-                response_time = request.POST.get("response-time")
-                total_result = results_qset + (quiz.time_allowed - int(response_time))*10
-                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": total_result , "res": results}
+                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": results_qset , "res": results}
                 return render(request, "quizapp/quiz.html", context)
     else:
         results = Result.objects.get(user=request.user, quiz=quiz)
@@ -132,6 +142,11 @@ def result(request):
 
 
 def leaderboard(request):
-    context = {}
+    result = Result.objects.filter(completed=True).order_by("-score")
+    if result.exists():
+        print("exists")
+    else:
+        print("doesn't exist")
+    context = {'result': result}
     return render(request, "quizapp/statistics.html", context)
 
