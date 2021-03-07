@@ -52,14 +52,14 @@ def quiz(request, pk):
         result.save()
     if request.method == "POST":
         answer_inputted = request.POST.get("choice")
-        print(request.POST.get("response-time"), "response_time")
         if request.POST.get("input") == "Finish":
             answer = Answer.objects.filter(text=answer_inputted)
             if answer[1].correct:
                 print(answer[1], "answer2")
                 r = Result.objects.get(user=request.user, quiz=quiz)
                 print(r.score, "before")
-                r.score += 100
+                response_time = request.POST.get("response-time")
+                r.score = r.score + (quiz.time_allowed - int(response_time)) * 10
                 r.points += 1
                 print(r.points, "----------------")
                 r.save()
@@ -83,12 +83,15 @@ def quiz(request, pk):
                 print(answer)
                 if answer[0].correct:
                     r = Result.objects.get(user = request.user, quiz = quiz)
-                    r.score += 100
+                    response_time = request.POST.get("response-time")
+                    r.score  = r.score + (quiz.time_allowed - int(response_time)) * 10
+                    print(r.score, "--------------score----------------")
                     r.points += 1
                     r.save()
                 elif not answer[0].correct:
                     print("wrong")
                     r = Result.objects.get(user=request.user, quiz=quiz)
+                    print(request.POST.get("choice"))
                     r.score += 0
                     print(r.points)
                     r.save()
@@ -106,7 +109,9 @@ def quiz(request, pk):
                 HttpResponse(answer_inputted)
                 results = Result.objects.get(user=request.user, quiz=quiz)
                 results_qset = results.score
-                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": results_qset , "res": results}
+                response_time = request.POST.get("response-time")
+                total_result = results_qset + (quiz.time_allowed - int(response_time))*10
+                context = {"time_allowed": time_allowed, "page_obj": page_obj,"result": total_result , "res": results}
                 return render(request, "quizapp/quiz.html", context)
     else:
         results = Result.objects.get(user=request.user, quiz=quiz)

@@ -236,8 +236,8 @@ a{
     }
     .close-btn{
         position: absolute;
-        top:-45px;
-        left:10px;
+        top:-39px;
+        left:27px;
     }
     svg{
         position: absolute;
@@ -246,11 +246,14 @@ a{
     }
     #countdown-number{
         position: absolute;
-        top:-39px;
-        left:25px;
+        top: -39px;
+        left: 27px;
     }
     .modal-content{
         margin:6% auto;
+    }
+    .result{
+    margin:5rem;
     }
 
 }
