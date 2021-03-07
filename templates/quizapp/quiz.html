@@ -102,12 +102,12 @@
 {% endif %}
 <script>
     var countdownNumberEl = document.getElementById('countdown-number');
-    var countdown = {{time_allowed}};
+    var countdown = 10;
     var btn = document.querySelectorAll('.choices_btn');
     var svgCircle = document.querySelector(".svg circle")
     countdownNumberEl.textContent = countdown;
     setInterval(function() {
-       countdown = -- countdown
+<!--       countdown = &#45;&#45; countdown-->
         if (countdown <= 0){
             document.getElementById("quizForm").submit()
              countdown = "  "

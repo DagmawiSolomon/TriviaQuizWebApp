@@ -64,7 +64,7 @@
     countdownNumberEl.textContent = countdown;
 
     setInterval(function() {
-<!--        countdown = &#45;&#45; countdown-->
+        countdown = -- countdown
         if (countdown <= 0){
             countdownNumberEl.style.display = "none"
             closeAdButton.style.opacity = "1"
