@@ -79,7 +79,7 @@ def quiz(request, pk):
                 return redirect("/result")
             else:
                 answer = Answer.objects.filter(text=answer_inputted)
-                if answer[1].correct:
+                if answer[0].correct:
                     print(answer[1], "answer2")
                     r = Result.objects.get(user=request.user, quiz=quiz)
                     print(r.score, "before")
