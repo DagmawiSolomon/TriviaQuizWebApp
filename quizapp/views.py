@@ -80,7 +80,6 @@ def quiz(request, pk):
             else:
                 answer = Answer.objects.filter(text=answer_inputted)
                 if answer[0].correct:
-                    print(answer[1], "answer2")
                     r = Result.objects.get(user=request.user, quiz=quiz)
                     print(r.score, "before")
                     response_time = request.POST.get("response-time")
