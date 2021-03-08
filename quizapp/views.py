@@ -30,13 +30,26 @@ def home(request):
     end_minute = end.strftime("%M")
     end_second = end.strftime("%S")
     if request.user.is_authenticated:
-        result = Result.objects.get(user=request.user, quiz=quiz)
-    else:
-         result = ''
+        result_qs = Result.objects.filter(quiz=quiz, user=request.user)
+        if result_qs.exists():
+            result = Result.objects.get(user = request.user, quiz = quiz)
+            context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
+                       "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
+                       "end_day": end_day, "end_year": end_year, "end_month": end_month,
+                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result}
+            return render(request, "quizapp/home.html", context)
+        else:
+            result = Result(user=request.user, quiz=quiz, score=0)
+            result.save()
+            context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
+                       "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
+                       "end_day": end_day, "end_year": end_year, "end_month": end_month,
+                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result}
+            return render(request, "quizapp/home.html", context)
     context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
                "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
                "end_day": end_day, "end_year": end_year, "end_month": end_month,
-               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result":result}
+               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second}
     return render(request, "quizapp/home.html", context)
 
 
