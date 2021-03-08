@@ -133,6 +133,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR, "static"
 ]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
