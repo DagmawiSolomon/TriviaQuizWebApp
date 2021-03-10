@@ -47,11 +47,11 @@ class Answer(models.Model):
     def __str__(self):
         return f"Question:{self.question.question}|Answer:{self.text}|correct:{self.correct}"
 
-
+default_img = "/media/profile.svg"
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    profile = models.ImageField(default='img/profile.svg', blank=True, null=True)
+    profile = models.ImageField(upload_to='profile_pic', default=default_img, blank=True, null=True)
     score = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)

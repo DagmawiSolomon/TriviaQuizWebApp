@@ -3,9 +3,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Quiz, Questions, Answer, Result
 from django.core.paginator import Paginator
-from django.db.models import Count, F
-from django.db.models.expressions import Func
-
+from django.shortcuts import render
+from .forms import ImageForm
 import datetime
 import time
 
@@ -29,6 +28,16 @@ def home(request):
     end_hour = end.strftime("%H")
     end_minute = end.strftime("%M")
     end_second = end.strftime("%S")
+    if request.method == 'POST' and request.FILES['profile_upload']:
+        profile_upload = request.FILES['profile_upload']
+        result_qs = Result.objects.filter(quiz=quiz, user=request.user)
+        if result_qs.exists():
+            result = Result.objects.get(user = request.user, quiz = quiz)
+            result.profile = profile_upload
+            result.save()
+        else:
+            result = Result(user=request.user, quiz=quiz)
+            result.save()
     if request.user.is_authenticated:
         result_qs = Result.objects.filter(quiz=quiz, user=request.user)
         if result_qs.exists():
@@ -154,14 +163,25 @@ def result(request):
 
 
 def leaderboard(request):
+    quiz = Quiz.objects.get(active=True, completed=False)
     results = Result.objects.filter(completed=True).order_by("-score")
-    if results.exists():
-        context = {'result': results}
-        return render(request, "quizapp/statistics.html", context)
+    result = Result.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        if request.method == 'POST' and request.FILES['profile_upload']:
+            profile_upload = request.FILES['profile_upload']
+            if results.exists():
+                result = Result.objects.get(user = request.user, quiz = quiz)
+                result.profile = profile_upload
+                result.save()
+                context = {'result': results, "r":result}
+                return render(request, "quizapp/statistics.html", context)
+            else:
+                result = Result(user=request.user, quiz=quiz)
+                result.save()
+                context = {'result': results,  "r":result}
+                return render(request, "quizapp/statistics.html", context)
+            
     else:
-        print("doesn't exist")
-        context = {'result': results}
-        return render(request, "quizapp/statistics.html", context)
-    context = {'result': results}
+        return redirect("/")
+    context = {'result': results,  "r":result}
     return render(request, "quizapp/statistics.html", context)
-

@@ -6,5 +6,4 @@ urlpatterns = [
     path("quiz/<str:pk>/", views.quiz, name= "quiz"),
     path("result/", views.result, name= "result"),
     path("leaderboard/", views.leaderboard, name = "leaderboard"),
-    # path('upload/', views.image_upload_view, name="upload")
 ]

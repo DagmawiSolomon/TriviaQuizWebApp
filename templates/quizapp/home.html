@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {%load static%}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
 </head>
 <body>
     <section class="hero">
+
         <header>
                    <nav class="nav">
             <ul>
@@ -26,16 +28,16 @@
 
                     {% if request.user.is_authenticated %}
                     <li id="profiledropdown">
-                        <div class="profiledropdown">
-                          <img src="{% static 'img/profile.svg' %}" alt="">
+                        <div>
+                          <img src="{{result.profile.url}}" alt="" class="profile">
                         </div>
                       </li>
                     <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link ">Dashboard</a></li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
-                        <img src="{% static 'img/profile.svg' %}" alt="">
+                        <img src="{{result.profile.url}}" alt="" class="profile">
                         <div class="upload-img">
-                          <p>+</p>
+                          <p id="upload">+</p>
                         </div>
                       </div>
                       <h4>{{ request.user }}</h4>
@@ -55,9 +57,20 @@
             </ul>
 
         </nav>
+        <div class="modal" id="popupmodal">
+            <div class="modal-content" style="width: fit-content;">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="button_container">
+                        <input type="file" name="profile_upload" class="custom-file-input">
+                        <button type="submit">Upload</button>
+                    </div>
+                  </form>
+                  <i class='bx bx-x' id="closeUploadPopup"></i>
 
+            </div>
+        </div>
         </header>
-
         <section class="ads">
             <div class="ad-silver">
                 <div class="img">
@@ -120,7 +133,7 @@
 
                 <div class="hero__btns" id="play_btn">
                     {% if result.completed == False %}
-                    <a href="{% url 'quiz' quiz.id %}" class="button" style="width:100px;"><i class='bx bx-play'></i>Play</a>
+                    <a href="{% url 'quiz' quiz.id %}" class="button" id="play" style="width:100px;"><i class='bx bx-play'></i>Play</a>
                     <button class ="button-light" id="about" style="width:130px;"><i class='bx bx-info-circle'></i>About</button>
                     {% elif result.completed == True %}
                     <h1 class="completed-message"><i class='bx bx-info-circle' ></i>Quiz completed</h1>
@@ -264,6 +277,7 @@
                 document.getElementById("hours").innerText = "-",
                 document.getElementById("minutes").innerText ="-",
                 document.getElementById("seconds").innerText = "-";
+                document.getElementById("play").href = ""
                 clearInterval(y);
               }
           }, 0)
@@ -275,12 +289,23 @@
   }());
   close_btn = document.getElementById("close-btn")
 open_btn = document.getElementById("about")
-popup = document.querySelector(".modal")
+popup = document.querySelector("#myModal")
+uploadImgBtn = document.querySelector("#upload")
+console.log(uploadImgBtn)
+popupModal = document.querySelector("#popupmodal")
+closeUpload = document.querySelector("#closeUploadPopup")
+console.log(popupModal)
+uploadImgBtn.addEventListener("click", function(){
+    popupModal.style.display = "block"
+})
 open_btn.addEventListener("click", function(){
     popup.style.display = "block"
 })
 close_btn.addEventListener("click", function(){
     popup.style.display = "none"
+})
+closeUpload.addEventListener("click", function(){
+    popupModal.style.display = "none"
 })
 </script>
 <script>

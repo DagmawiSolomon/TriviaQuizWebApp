@@ -27,15 +27,15 @@
                     <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link ">Dashboard
                     </a></li>
                     <li id="profiledropdown">
-                      <div class="profiledropdown">
-                        <img src="{% static 'img/profile.svg' %}" alt="">
+                      <div>
+                        <img src="{{r.profile.url}}" alt="" class="profile">
                       </div>
                     </li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
-                        <img src="{% static 'img/profile.svg' %}" alt="">
+                        <img src="{{r.profile.url}}" alt="" class="profile">
                         <div class="upload-img">
-                          <p>+</p>
+                          <p id="upload">+</p>
                         </div>
                       </div>
                       <h4>{{request.user}}</h4>
@@ -55,7 +55,18 @@
             </ul>
 
         </nav>
+        <div class="modal" id="popupmodal">
+          <div class="modal-content" style="width: fit-content;">
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="button_container">
+                      <input type="file" name="profile_upload" class="custom-file-input">
+                      <button type="submit">Upload</button>
+                  </div>
+                </form>
+                <i class='bx bx-x' id="closeUploadPopup"></i>
 
+          </div>
     </header>
     <section class="ads">
         <div class="ad-silver">
@@ -72,17 +83,17 @@
    <section class="leaderBoard">
      <h1>Leaderboard</h1>
      <div class="circles">
-       <div id="profile">
-         <img src="{% static 'img/profile.svg' %}" alt="">
-         <h1>John Doe</h1>
-         <h1 id="score"><i class='bx bx-coin-stack'> </i>1000</h1>
+       <div class="profile-container">
+         <img src="{{r.profile.url}}" alt="" class="w-80">
+         <h1>{{r.user.username}}</h1>
+         <h1 id="score"><i class='bx bx-coin-stack'> </i>{{r.score}}</h1>
        </div>
       </div>
       <div class="table">
           {% for r in result %}
         <div class="card" id = "{{r.user.username}}">
           <p class="rank"></p>
-          <img src="{% static 'img/profile.svg' %}" alt="">
+          <img src="{{r.profile.url}}" alt="" class="profile">
           <div class="user-info">
             <p class="name">{{r.user.username}}</p>
             <p class="score"><i class='bx bx-coin-stack'></i>{{r.score}}</p>
@@ -125,6 +136,16 @@
         userRank[2].innerText = "3"
       }
     }
-    
+uploadImgBtn = document.querySelector("#upload")
+console.log(uploadImgBtn)
+popupModal = document.querySelector("#popupmodal")
+closeUpload = document.querySelector("#closeUploadPopup")
+console.log(popupModal)
+uploadImgBtn.addEventListener("click", function(){
+    popupModal.style.display = "block"
+})
+    closeUpload.addEventListener("click", function(){
+      popupModal.style.display = "none"
+  })
 </script>
 </html>
