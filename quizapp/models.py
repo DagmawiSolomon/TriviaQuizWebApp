@@ -51,7 +51,7 @@ class Answer(models.Model):
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # profile = models.ImageField(upload_to=settings.MEDIA_ROOT, default='/static/img/profile.svg', blank =True)
+    profile = models.ImageField(default='img/profile.svg', blank=True, null=True)
     score = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)

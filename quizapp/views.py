@@ -88,7 +88,7 @@ def quiz(request, pk):
                     print(r.points, "----------------")
                     r.save()
                     print(r.score, "after")
-                elif not answer[1].correct:
+                elif not answer[0].correct:
                     r = Result.objects.get(user=request.user, quiz=quiz)
                     r.score += 0
                     r.save()
@@ -154,11 +154,14 @@ def result(request):
 
 
 def leaderboard(request):
-    result = Result.objects.filter(completed=True).order_by("-score")
-    if result.exists():
-        print("exists")
+    results = Result.objects.filter(completed=True).order_by("-score")
+    if results.exists():
+        context = {'result': results}
+        return render(request, "quizapp/statistics.html", context)
     else:
         print("doesn't exist")
-    context = {'result': result}
+        context = {'result': results}
+        return render(request, "quizapp/statistics.html", context)
+    context = {'result': results}
     return render(request, "quizapp/statistics.html", context)
 

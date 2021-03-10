@@ -80,8 +80,8 @@
       </div>
       <div class="table">
           {% for r in result %}
-        <div class="card">
-          <p class="rank first">1</p>
+        <div class="card" id = "{{r.user.username}}">
+          <p class="rank"></p>
           <img src="{% static 'img/profile.svg' %}" alt="">
           <div class="user-info">
             <p class="name">{{r.user.username}}</p>
@@ -89,31 +89,7 @@
           </div>
         </div>
           {% endfor %}
-        <div class="card">
-          <p class="rank second">2</p>
-          <img src="{% static 'img/profile.svg' %}" alt="">
-          <div class="user-info">
-            <p class="name">Jane Doe</p>
-            <p class="score"><i class='bx bx-coin-stack'></i>1000</p>
-          </div>
-        </div>
-        <div class="card">
-          <p class="rank third">3</p>
-          <img src="{% static 'img/profile.svg' %}" alt="">
-          <div class="user-info">
-            <p class="name">Tom Doe</p>
-            <p class="score"><i class='bx bx-coin-stack'></i>1000</p>
-          </div>
-        </div>
-        <div class="card">
-          <p class="rank normal">4</p>
-          <img src="{% static 'img/profile.svg' %}" alt="">
-          <div class="user-info">
-            <p class="name">Peter Doe</p>
-            <p class="score"><i class='bx bx-coin-stack'></i>1000</p>
-          </div>
-        </div>
-
+       
         </div>
       </div>
 
@@ -129,6 +105,26 @@
     console.log("code works till this instance.")
     dropdown.classList.toggle("visibleprofile")
   })
+  const userResult = document.querySelectorAll(".card")
+  const userRank = document.querySelectorAll(".card .rank")
+  console.log(userRank[0])
+  console.log(userRank[1])
+  console.log(userRank.length - (userRank.length - 1))
 
+    for(x in userResult){
+      if(userResult[x,0] == userResult[0]){
+        userRank[0].classList.add("first")
+        userRank[0].innerText = "1"
+      }
+      if(userResult[x,1] == userResult[1]){
+        userRank[1].classList.add("second")
+        userRank[1].innerText = "2"
+      }
+      if(userResult[x,2] == userResult[2]){
+        userRank[2].classList.add("third")
+        userRank[2].innerText = "3"
+      }
+    }
+    
 </script>
 </html>
