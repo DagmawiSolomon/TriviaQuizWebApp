@@ -47,7 +47,7 @@ class Answer(models.Model):
     def __str__(self):
         return f"Question:{self.question.question}|Answer:{self.text}|correct:{self.correct}"
 
-default_img = "/media/default.jpg"
+default_img = "/default.jpg"
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
