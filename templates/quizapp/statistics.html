@@ -21,13 +21,18 @@
                 <li><a href="{% url 'home' %}" class="nav__logo">Logo</a></li>
             </ul>
             <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
+              <ul class="nav__list">
 
-                    {% if request.user.is_authenticated %}
-                    <li id="profiledropdown">
+                  {% if request.user.is_authenticated %}
+                  <li id="profiledropdown-large">
                       <div class="div">
-                        <img src="{{r.profile.url}}" alt="" class="profile">
-                        <div class="editCircle">
+                        <img src="{{r.profile.url}}" alt="" >
+                      </div>
+                    </li>
+                  <li id="profiledropdown-small">
+                      <div class="div">
+                        <img src="{{r.profile.url}}" alt="" >
+                        <div class="editCircle" id="editProfile">
                           <i class='bx bxs-pencil' ></i>
                         </div>
                       </div>
@@ -39,23 +44,23 @@
                   <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                   <div class="userprofile" id="userprofile">
                     <div class="img">
-                      <img src="{{result.profile.url}}" alt="" class="profile-home">
+                      <img src="{{r.profile.url}}" alt="">
                       <div class="upload-img">
                         <p id="upload">+</p>
                       </div>
                     </div>
-                      <h4>{{request.user}}</h4>
-                      <p class="email">{{request.user.email}}</p>
-                      <div class="button_container">
-                        <a href="{% url 'account_logout' %}">Logout</a>
-                      </div>
+                    <h4>{{ request.user }}</h4>
+                    <p class="email">{{request.user.email}}</p>
+                    <div class="button_container">
+                      <a href="{% url 'account_logout' %}">Logout</a>
                     </div>
-                    {% else%}
-                    <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
-                    <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
-                    {% endif %}
-                </ul>
-            </div>
+                  </div>
+                  {% else%}
+                  <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
+                  <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
+                  {% endif %}
+              </ul>
+          </div>
             <ul class="nav__toogle" id="nav-toggle" >
                 <i class='bx bxs-grid '></i>
             </ul>
@@ -70,9 +75,9 @@
                       <input type="text" name="email" placeholder="Email">
                       <input type="text" name="phonenumber" placeholder="Phonenumber">
                   </div>
+                  <input type="file" name="profile_upload" class="custom-file-input">
                   <div class="updatebutton_container">
-                      <input type="file" name="profile_upload" class="custom-file-input">
-                      <button type="submit">Upload</button>
+                      <button type="submit">Save</button>
                   </div>
                 </form>
                 <i class='bx bx-x' id="closeUploadPopup"></i>
@@ -121,7 +126,7 @@
 </body>
 <script src="{% static 'JS/main.js' %}"></script>
 <script>
-  const dropdownBtn = document.getElementById("profiledropdown")
+  const dropdownBtn = document.getElementById("profiledropdown-large")
   const dropdown = document.getElementById("userprofile")
   dropdownBtn.addEventListener("click", function(){
     console.log("code works till this instance.")
@@ -147,16 +152,21 @@
         userRank[2].innerText = "3"
       }
     }
-uploadImgBtn = document.querySelector("#upload")
-console.log(uploadImgBtn)
-popupModal = document.querySelector("#popupmodal")
-closeUpload = document.querySelector("#closeUploadPopup")
-console.log(popupModal)
+const close_btn = document.getElementById("close-btn")
+const popup = document.querySelector("#myModal")
+const uploadImgBtn = document.querySelector("#upload")
+const popupModal = document.querySelector("#popupmodal")
+const closeUpload = document.querySelector("#closeUploadPopup")
+const editProfile = document.querySelector("#editProfile")
 uploadImgBtn.addEventListener("click", function(){
     popupModal.style.display = "block"
 })
-    closeUpload.addEventListener("click", function(){
-      popupModal.style.display = "none"
-  })
+closeUpload.addEventListener("click", function(){
+    popupModal.style.display = "none"
+})
+editProfile.addEventListener("click", function(){
+    popupModal.style.display = "block"
+})
+
 </script>
 </html>
