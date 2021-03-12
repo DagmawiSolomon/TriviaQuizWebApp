@@ -27,15 +27,27 @@
                 <ul class="nav__list">
 
                     {% if request.user.is_authenticated %}
-                    <li id="profiledropdown">
-                        <div>
-                          <img src="{{result.profile.url}}" alt="" class="profile">
+                    <li id="profiledropdown-large">
+                        <div class="div">
+                          <img src="{{result.profile.url}}" alt="" >
                         </div>
                       </li>
-                    <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link ">Dashboard</a></li>
+                    <li id="profiledropdown-small">
+                        <div class="div">
+                          <img src="{{result.profile.url}}" alt="" >
+                          <div class="editCircle" id="editProfile">
+                            <i class='bx bxs-pencil' ></i>
+                          </div>
+                        </div>
+                      </li>
+                    <li class="nav__item username"><p>{{request.user.username}}</p></li>
+                    <li class="nav__item useremail"><p>{{request.user.email}}</p></li>
+                    <li class="nav__item navigation hidden-nav-item"><a href="{% url 'home' %}" class="nav_link "><i class='bx bx-home-alt'></i>Home</a></li>
+                    <li class="nav__item navigation"><a href="{% url 'leaderboard' %}" class="nav_link "><i class='bx bx-trophy' id="hidden" ></i>Leaderboard</a></li>
+                    <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
-                        <img src="{{result.profile.url}}" alt="" class="profile">
+                        <img src="{{result.profile.url}}" alt="">
                         <div class="upload-img">
                           <p id="upload">+</p>
                         </div>
@@ -58,12 +70,18 @@
 
         </nav>
         <div class="modal" id="popupmodal">
-            <div class="modal-content" style="width: fit-content;">
+            <div class="modal-content">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="button_container">
-                        <input type="file" name="profile_upload" class="custom-file-input">
-                        <button type="submit">Upload</button>
+                    <div class="upateInfomodal">
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="email" placeholder="Email">
+                        <input type="text" name="phonenumber" placeholder="Phonenumber">
+                    </div>
+                    <input type="file" name="profile_upload" class="custom-file-input" id="filefield">
+                   
+                    <div class="updatebutton_container">
+                        <button type="submit">Save</button>
                     </div>
                   </form>
                   <i class='bx bx-x' id="closeUploadPopup"></i>
@@ -272,12 +290,10 @@
                 let headline = document.getElementById("message");
                 countdown = document.getElementById("countdown"),
                 headline.innerText = "No quiz"
-                console.log("hello")
                 document.getElementById("days").innerText = "-",
                 document.getElementById("hours").innerText = "-",
                 document.getElementById("minutes").innerText ="-",
                 document.getElementById("seconds").innerText = "-";
-                document.getElementById("play").href = ""
                 clearInterval(y);
               }
           }, 0)
@@ -287,15 +303,20 @@
 
       }, 0)
   }());
-  close_btn = document.getElementById("close-btn")
-open_btn = document.getElementById("about")
-popup = document.querySelector("#myModal")
-uploadImgBtn = document.querySelector("#upload")
-console.log(uploadImgBtn)
-popupModal = document.querySelector("#popupmodal")
-closeUpload = document.querySelector("#closeUploadPopup")
-console.log(popupModal)
+const close_btn = document.getElementById("close-btn")
+const open_btn = document.getElementById("about")
+const popup = document.querySelector("#myModal")
+const uploadImgBtn = document.querySelector("#upload")
+const popupModal = document.querySelector("#popupmodal")
+const closeUpload = document.querySelector("#closeUploadPopup")
+const editProfile = document.querySelector("#editProfile")
 uploadImgBtn.addEventListener("click", function(){
+    popupModal.style.display = "block"
+})
+closeUpload.addEventListener("click", function(){
+    popupModal.style.display = "none"
+})
+editProfile.addEventListener("click", function(){
     popupModal.style.display = "block"
 })
 open_btn.addEventListener("click", function(){
@@ -304,17 +325,16 @@ open_btn.addEventListener("click", function(){
 close_btn.addEventListener("click", function(){
     popup.style.display = "none"
 })
-closeUpload.addEventListener("click", function(){
-    popupModal.style.display = "none"
-})
+
+
 </script>
 <script>
-  const dropdownBtn = document.getElementById("profiledropdown")
+  const dropdownBtn = document.getElementById("profiledropdown-large")
   const dropdown = document.getElementById("userprofile")
   dropdownBtn.addEventListener("click", function(){
-    console.log("code works till this instance.")
     dropdown.classList.toggle("visibleprofile")
   })
+
 
 </script>
 </html>

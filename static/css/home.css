@@ -44,15 +44,25 @@ a,p,h1,h2,h3,h4,h5,h6{
 
 @media screen and (max-width:720px){
     .nav__menu{
-            position: fixed;
-            top: 3rem;
-            left: -1000%;
-            width: 70%;
-            height: 100Vh;
-            padding: 2rem;
-            background-color: #ffffff;
-            transition: .5s;
-            z-index: 1000;
+        position: fixed;
+        top: 3rem;
+        left: -1000%;
+        width: 90%;
+        height: 100vh;
+        padding: 0.2rem;
+        background-color: #ffffff;
+        transition: .5s;
+        z-index: 9;
+}
+li#profiledropdown-large{
+    display: none;
+}
+#profiledropdown-small img{
+    width: 110px;
+    height: auto;
+    clip-path: circle();
+    margin: 0rem 0.5rem;
+    
 }
 .image_upload_modal{
     background-color: #ddffdd;
@@ -60,17 +70,38 @@ a,p,h1,h2,h3,h4,h5,h6{
 .dashboard_info{
     margin-left: 1rem;
 }
+.username{
+    font-weight: 600;
+    font-size: 16pt;
+    text-transform: capitalize;
+}
+.useremail{
+    opacity:0.8;
+    margin-bottom: 1.5rem;
+}
+.navigation{
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    color: #8a8a8a;
+}
 
-    .nav__list{
+   .nav__list{
         display: flex;
+        justify-content: flex-start;
         flex-direction: column;
     }
     .nav__item{
-        margin: 1rem;
-        text-align: center;
-        margin-left: auto;
+        margin: 0.3rem 0rem;
         margin-right: auto;
         font-size:1rem;
+    }
+    .nav__item i{
+        margin-right: 1rem;
+        color: #8a8a8a;
+        font-size: 1.5rem;
+        position: relative;
+        top:3px;
     }
     .btn{
     position: relative;
@@ -488,7 +519,7 @@ a,p,h1,h2,h3,h4,h5,h6{
 .modal {
     display: none;
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 100000000000; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -512,6 +543,8 @@ a,p,h1,h2,h3,h4,h5,h6{
       position: absolute;
       top:10px;
       right:10px;
+      font-size: 14pt;
+      cursor: pointer;
   }
   .modal-content h1{
       margin: 1rem 0;
@@ -523,12 +556,6 @@ a,p,h1,h2,h3,h4,h5,h6{
   .modal-content span{
       color:#3C3CC2;
       font-weight: 600;
-  }
-  .profile{
-        vertical-align: middle;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
   }
   .button_container{
     height: 60px;
@@ -579,20 +606,26 @@ a,p,h1,h2,h3,h4,h5,h6{
   .custom-file-input::before {
     content: 'Select image';
     color: #3C3CC2;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 1rem 2rem;
     background: #fff;
     border: 2px solid #3C3CC2;
     border-radius: 5px;
     padding: 10px;
     outline: none;
     white-space: nowrap;
+    text-align: center;
     -webkit-user-select: none;
     cursor: pointer;
     text-shadow: 1px 1px #fff;
     font-weight: 500;
     font-size: 10pt;
     font-family: "poppins", sans-serif;
-  }
+}
+
+
   .custom-file-input:hover::before {
     border-color: #3C3CC2;
   }
@@ -641,10 +674,6 @@ a,p,h1,h2,h3,h4,h5,h6{
 .visibleprofile{
     display: block;
 }
-.userprofile .img{
-    margin:1rem auto;
-    position: relative;
-}
 
 .userprofile h4,.email{
     color: #ffffff;
@@ -652,21 +681,39 @@ a,p,h1,h2,h3,h4,h5,h6{
     margin-bottom: 0.5rem;
 }
 
-
-.profiledropdown img{
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+#profiledropdown2 .div{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.5rem -1rem;
+    position: relative;
 }
+.editCircle{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #323031;
+    border-radius: 50%;
+    background-color: #323031;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 70px;
+    left: 115px;
+}
+.logout-link{
+    margin: 1rem 0;
+}
+
 .upload-img{
     width: 25px;
     height: 25px;
     background-color: #4e4d4e;
     border-radius: 50%;
     position: relative;
-    top: -35px;
-    left: 50px;
+    position: absolute;
+    top: 48px;
+    left: 126px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -691,6 +738,7 @@ a,p,h1,h2,h3,h4,h5,h6{
     margin: 0rem 1rem;
 }
 
+
 .button_container a:nth-child(1){
     margin: 1rem 0.5rem;
     width: 100px;
@@ -714,10 +762,55 @@ a,p,h1,h2,h3,h4,h5,h6{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+    width: fit-content;
+    margin: auto;
+}
+
 .completed-message i{
     margin-right: 0.5rem;
 }
+.upateInfomodal{
+    display: flex;
+    flex-direction: column;
+}
+.upateInfomodal input{
+    font-family: "poppins", sans-serif;
+    padding: 0.7rem;
+    margin: 1rem auto;
+    border: 2px solid #8a8a8a;
+    border-radius: 8px;
+    width: 71%;
+    color: #141414;
+    outline: none;
+}
+.updateInfomodal input:nth-child(4){
+    margin: 0;
+}
+.updatebutton_container{
+    display: flex;
+    justify-content: center;
+}
+.updatebutton_container button{
+    margin: 0 5px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #3C3CC2;
+    color:#FFF;
+    transition: all 0.3s ease;
+    text-align:center;
+    padding: 10px;
+    font-family: "poppins", sans-serif;
+    background-color: #3C3CC2;   
+}
+input.custom-file-input {
+    border: none;
+}
+
 
 /*=======tablet===========*/
 @media screen and (min-width:768px){
@@ -763,13 +856,17 @@ a,p,h1,h2,h3,h4,h5,h6{
         display: flex;
         width: fit-content;
         align-items: center;
-        justify-content: start;
+        justify-content: center;
+        margin: auto;
 
       }
     .ads{
         justify-content: flex-end;
         margin: 1rem;
 
+    }
+    .hero__img img{
+        width: 70%;
     }
     .footer__container{
         display: grid;
@@ -794,8 +891,48 @@ a,p,h1,h2,h3,h4,h5,h6{
     .dashboard{
         display: none;
     }
-
-
+    .username{
+        display: none;
+    }
+    .useremail{
+        display: none;
+    }
+    .logout{
+        display: none;
+    }
+    .hidden-nav-item{
+        display: none;
+    }
+    #hidden{
+        display: none;
+    }
+    .editCircle{
+        display: none;
+    }
+    li#profiledropdown-small{
+        display: none
+    }
+    li#profiledropdown-large{
+        display: block;
+    }
+    li#profiledropdown-large img{
+        width:45px;
+        height:45px;
+        border-radius: 50%;
+    }
+    div#userprofile .img{
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0rem;
+        position: relative;
+        left:2px;
+    }
+    div#userprofile img{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: relative;
+    }
 }
 
 @media screen and (min-width:1030px){
@@ -813,6 +950,13 @@ a,p,h1,h2,h3,h4,h5,h6{
         justify-content:start;
         text-align: start;
     }
+    .completed-message{
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        justify-content: start;
+        margin: 0;
+      }
 
     .button{
         width: 120px;
@@ -833,8 +977,29 @@ a,p,h1,h2,h3,h4,h5,h6{
         justify-content: center;
         align-items: flex-start;
     }
+    .username{
+        display: none;
+    }
+    .useremail{
+        display: none;
+    }
+    .logout{
+        display: none;
+    }
+    .navigation i{
+        display: none;
+    }
+    #hidden{
+        display: none;
+    }
+    .editCircle{
+        display: none;
+    }
+    .hidden-nav-item{
+        display: none;
+    }
     .hero__img img{
-        width: 100%;
+        width: 94%;
     }
     .hero__data{
         width: 100%;
@@ -928,6 +1093,48 @@ a,p,h1,h2,h3,h4,h5,h6{
         top: 77px;
         right: 37px;
     }
+    .upateInfomodal{
+        display: flex;
+        flex-direction: column;
+    }
+    .upateInfomodal input{
+        font-family: "poppins", sans-serif;
+        padding: 0.7rem;
+        margin: 1rem auto;
+        border: 2px solid #8a8a8a;
+        border-radius: 8px;
+        width: 71%;
+        color: #141414;
+        outline: none;
+    }
+    .updateInfomodal input:nth-child(4){
+        margin: 0;
+    }
+    .updatebutton_container{
+        display: flex;
+        justify-content: center;
+    }
+    .updatebutton_container button{
+        margin: 0 5px;
+        width: 100px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        border: 2px solid #3C3CC2;
+        color:#FFF;
+        transition: all 0.3s ease;
+        text-align:center;
+        padding: 10px;
+        font-family: "poppins", sans-serif;
+        background-color: #3C3CC2;   
+    }
+    input.custom-file-input {
+        border: none;
+    }
+
 
 }
 @media screen and (max-height:545px){
@@ -937,4 +1144,17 @@ a,p,h1,h2,h3,h4,h5,h6{
         .ad-silver{
         width: 280px;
     }
+    .username{
+        font-size: 15pt;
+    }
+    .useremail{
+        font-size: 14pt;
+    }
+    .title{
+        font-size: 11.5pt;
+        font-weight: 500;
+        text-align: start;
+        padding: 0rem 1rem;
+    }
+
 }

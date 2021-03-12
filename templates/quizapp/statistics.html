@@ -24,20 +24,26 @@
                 <ul class="nav__list">
 
                     {% if request.user.is_authenticated %}
-                    <li class="nav__item"><a href="{% url 'leaderboard' %}" class="nav_link ">Dashboard
-                    </a></li>
                     <li id="profiledropdown">
-                      <div>
+                      <div class="div">
                         <img src="{{r.profile.url}}" alt="" class="profile">
-                      </div>
-                    </li>
-                    <div class="userprofile" id="userprofile">
-                      <div class="img">
-                        <img src="{{r.profile.url}}" alt="" class="profile">
-                        <div class="upload-img">
-                          <p id="upload">+</p>
+                        <div class="editCircle">
+                          <i class='bx bxs-pencil' ></i>
                         </div>
                       </div>
+                    </li>
+                  <li class="nav__item username"><p>{{request.user.username}}</p></li>
+                  <li class="nav__item useremail"><p>{{request.user.email}}</p></li>
+                  <li class="nav__item navigation hidden-nav-item"><a href="{% url 'home' %}" class="nav_link "><i class='bx bx-home-alt'></i>Home</a></li>
+                  <li class="nav__item navigation"><a href="{% url 'leaderboard' %}" class="nav_link "><i class='bx bx-trophy' id="hidden" ></i>Leaderboard</a></li>
+                  <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
+                  <div class="userprofile" id="userprofile">
+                    <div class="img">
+                      <img src="{{result.profile.url}}" alt="" class="profile-home">
+                      <div class="upload-img">
+                        <p id="upload">+</p>
+                      </div>
+                    </div>
                       <h4>{{request.user}}</h4>
                       <p class="email">{{request.user.email}}</p>
                       <div class="button_container">
@@ -56,10 +62,15 @@
 
         </nav>
         <div class="modal" id="popupmodal">
-          <div class="modal-content" style="width: fit-content;">
+          <div class="modal-content">
               <form method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <div class="button_container">
+                  <div class="upateInfomodal">
+                      <input type="text" name="username" placeholder="Username">
+                      <input type="text" name="email" placeholder="Email">
+                      <input type="text" name="phonenumber" placeholder="Phonenumber">
+                  </div>
+                  <div class="updatebutton_container">
                       <input type="file" name="profile_upload" class="custom-file-input">
                       <button type="submit">Upload</button>
                   </div>
@@ -93,7 +104,7 @@
           {% for r in result %}
         <div class="card" id = "{{r.user.username}}">
           <p class="rank"></p>
-          <img src="{{r.profile.url}}" alt="" class="profile">
+          <img src="{{r.profile.url}}" alt="" class="profile-table">
           <div class="user-info">
             <p class="name">{{r.user.username}}</p>
             <p class="score"><i class='bx bx-coin-stack'></i>{{r.score}}</p>
