@@ -31,7 +31,12 @@
                     </li>
                   <li id="profiledropdown-small">
                       <div class="div">
-                        <img src="{{r.profile.url}}" alt="" >
+                        {% ifequal r.profile None %}
+                        <img src="{% static 'img/default.jpg' %}">
+                        {% else %}
+                        <img src="{{r.profile.url}}" >
+                        {% endifequal %}
+                       
                         <div class="editCircle" id="editProfile">
                           <i class='bx bxs-pencil' ></i>
                         </div>
@@ -44,7 +49,11 @@
                   <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                   <div class="userprofile" id="userprofile">
                     <div class="img">
-                      <img src="{{r.profile.url}}" alt="">
+                      {% ifequal r.profile None %}
+                      <img src="{% static 'img/default.jpg' %}">
+                      {% else %}
+                      <img src="{{r.profile.url}}">
+                      {% endifequal %}
                       <div class="upload-img">
                         <p id="upload">+</p>
                       </div>
@@ -86,6 +95,7 @@
     </header>
     <section class="ads">
         <div class="ad-silver">
+          
             <div class="img">
                 <img src="{% static 'img/logo-colour.d534143b.svg' %}" alt="">
             </div>
@@ -100,7 +110,11 @@
      <h1>Leaderboard</h1>
      <div class="circles">
        <div class="profile-container">
-         <img src="{{r.profile.url}}" alt="" class="w-80">
+        {% ifequal object.image None %}
+        <img src="{% static 'img/default.jpg' %}" />
+        {% else %}
+        <img src="{{r.profile.url}}" alt="">
+        {% endifequal %}
          <h1>{{r.user.username}}</h1>
          <h1 id="score"><i class='bx bx-coin-stack'> </i>{{r.score}}</h1>
        </div>
@@ -109,7 +123,11 @@
           {% for r in result %}
         <div class="card" id = "{{r.user.username}}">
           <p class="rank"></p>
-          <img src="{{r.profile.url}}" alt="" class="profile-table">
+          {% ifequal object.image None %}
+          <img src="{% static 'img/default.jpg' %}" class="profile-table">
+          {% else %}
+           <img src="{{r.profile.url}}" alt="" class="profile-table">
+          {% endifequal %}
           <div class="user-info">
             <p class="name">{{r.user.username}}</p>
             <p class="score"><i class='bx bx-coin-stack'></i>{{r.score}}</p>

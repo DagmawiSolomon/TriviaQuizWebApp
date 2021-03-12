@@ -29,12 +29,20 @@
                     {% if request.user.is_authenticated %}
                     <li id="profiledropdown-large">
                         <div class="div">
-                          <img src="{{result.profile.url}}" alt="" >
+                            {% ifequal result.profile None %}
+                            <img src="{% static 'img/default.jpg' %}">
+                            {% else %}
+                            <img src="{{result.profile.url}}" >
+                            {% endifequal %}
                         </div>
                       </li>
                     <li id="profiledropdown-small">
                         <div class="div">
-                          <img src="{{result.profile.url}}" alt="" >
+                            {% ifequal result.profile None %}
+                            <img src="{% static 'img/default.jpg' %}">
+                            {% else %}
+                            <img src="{{result.profile.url}}" >
+                            {% endifequal %}
                           <div class="editCircle" id="editProfile">
                             <i class='bx bxs-pencil' ></i>
                           </div>
@@ -47,7 +55,11 @@
                     <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
-                        <img src="{{result.profile.url}}" alt="">
+                        {% ifequal result.profile None %}
+                        <img src="{% static 'img/default.jpg' %}">
+                        {% else %}
+                        <img src="{{result.profile.url}}" >
+                        {% endifequal %}
                         <div class="upload-img">
                           <p id="upload">+</p>
                         </div>
