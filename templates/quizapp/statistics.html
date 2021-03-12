@@ -26,16 +26,20 @@
                   {% if request.user.is_authenticated %}
                   <li id="profiledropdown-large">
                       <div class="div">
-                        <img src="{{r.profile.url}}" alt="" >
+                        {% if r.profile %}
+                        <img src="{{r.profile.url}}" >
+                        {% else %}
+                        <img src="{% static 'img/default.jpg' %}">
+                        {% endif %}
                       </div>
                     </li>
                   <li id="profiledropdown-small">
                       <div class="div">
-                        {% ifequal r.profile None %}
-                        <img src="{% static 'img/default.jpg' %}">
-                        {% else %}
+                        {% if r.profile %}
                         <img src="{{r.profile.url}}" >
-                        {% endifequal %}
+                        {% else %}
+                        <img src="{% static 'img/default.jpg' %}">
+                        {% endif %}
                        
                         <div class="editCircle" id="editProfile">
                           <i class='bx bxs-pencil' ></i>
@@ -49,11 +53,11 @@
                   <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                   <div class="userprofile" id="userprofile">
                     <div class="img">
-                      {% ifequal r.profile None %}
-                      <img src="{% static 'img/default.jpg' %}">
-                      {% else %}
+                      {% if r.profile%}
                       <img src="{{r.profile.url}}">
-                      {% endifequal %}
+                      {% else %}
+                      <img src="{% static 'img/default.jpg' %}">
+                      {% endif%}
                       <div class="upload-img">
                         <p id="upload">+</p>
                       </div>
@@ -77,21 +81,35 @@
         </nav>
         <div class="modal" id="popupmodal">
           <div class="modal-content">
-              <form method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <div class="upateInfomodal">
-                      <input type="text" name="username" placeholder="Username">
-                      <input type="text" name="email" placeholder="Email">
-                      <input type="text" name="phonenumber" placeholder="Phonenumber">
-                  </div>
-                  <input type="file" name="profile_upload" class="custom-file-input">
-                  <div class="updatebutton_container">
-                      <button type="submit">Save</button>
-                  </div>
+            <h1 class="modal-title">Account Settings</h1>
+            <div class="userprofilearea">
+                
+                <div class="userProfileImg">
+                    
+                    {% if result.profile %}
+                    <img src="{{result.profile.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'img/default.jpg' %}" alt="">
+                    {% endif %}
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="upateInfomodal">
+                        <input type="text" name="username" placeholder="{{r.user.username}}">
+                        <input type="text" name="email" placeholder="{{r.user.email}}">
+                        <!--<input type="text" name="phonenumber" placeholder="Phonenumber">-->
+                    </div>
+                    <input type="file" name="profile_upload" class="custom-file-input" id="filefield">
+                
+                    <div class="updatebutton_container">
+                        <button type="submit">Save</button>
+                    </div>
                 </form>
-                <i class='bx bx-x' id="closeUploadPopup"></i>
+              <i class='bx bx-x' id="closeUploadPopup"></i>
+            </div>
 
-          </div>
+
+        </div>
     </header>
     <section class="ads">
         <div class="ad-silver">
@@ -110,11 +128,11 @@
      <h1>Leaderboard</h1>
      <div class="circles">
        <div class="profile-container">
-        {% ifequal r.profile None %}
-        <img src="{% static 'img/default.jpg' %}" />
-        {% else %}
+        {% if r.profile %}
         <img src="{{r.profile.url}}" alt="">
-        {% endifequal %}
+        {% else %}
+        <img src="{% static 'img/default.jpg' %}" />
+        {% endif %}
          <h1>{{r.user.username}}</h1>
          <h1 id="score"><i class='bx bx-coin-stack'> </i>{{r.score}}</h1>
        </div>
@@ -123,11 +141,11 @@
           {% for r in result %}
         <div class="card" id = "{{r.user.username}}">
           <p class="rank"></p>
-          {% ifequal r.profile None %}
-          <img src="{% static 'img/default.jpg' %}" class="profile-table">
+          {% if r.profile %}
+          <img src="{{r.profile.url}}" alt="" class="profile-table">
           {% else %}
-           <img src="{{r.profile.url}}" alt="" class="profile-table">
-          {% endifequal %}
+          <img src="{% static 'img/default.jpg' %}" class="profile-table">         
+          {% endif %}
           <div class="user-info">
             <p class="name">{{r.user.username}}</p>
             <p class="score"><i class='bx bx-coin-stack'></i>{{r.score}}</p>

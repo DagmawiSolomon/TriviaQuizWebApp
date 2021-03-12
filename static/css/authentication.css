@@ -13,6 +13,7 @@ a,p,h1,h2,h3,h4,h5,h6{
     text-decoration: none;
     margin: 0;
 }
+
 body{
     margin: 1.5rem 1rem;
 }
@@ -122,6 +123,9 @@ body{
 }
 .signup_input_form{
     display: block;
+}
+ul.errorlist.nonfield {
+    text-align: center;
 }
 
 @media screen and (min-width:750px){

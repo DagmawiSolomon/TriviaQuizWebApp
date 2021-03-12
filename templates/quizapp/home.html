@@ -29,20 +29,20 @@
                     {% if request.user.is_authenticated %}
                     <li id="profiledropdown-large">
                         <div class="div">
-                            {% ifequal result.profile None %}
-                            <img src="{% static 'img/default.jpg' %}">
-                            {% else %}
+                            {% if result.profile %}
                             <img src="{{result.profile.url}}" >
-                            {% endifequal %}
+                            {% else %}
+                            <img src="{% static 'img/default.jpg' %}">
+                            {% endif %}
                         </div>
                       </li>
                     <li id="profiledropdown-small">
                         <div class="div">
-                            {% ifequal result.profile None %}
-                            <img src="{% static 'img/default.jpg' %}">
-                            {% else %}
+                            {% if result.profile%}
                             <img src="{{result.profile.url}}" >
-                            {% endifequal %}
+                            {% else %}
+                            <img src="{% static 'img/default.jpg' %}">
+                            {% endif %}
                           <div class="editCircle" id="editProfile">
                             <i class='bx bxs-pencil' ></i>
                           </div>
@@ -55,11 +55,11 @@
                     <li class="nav__item navigation hidden-nav-item "><a href="{% url 'account_logout' %}" class="nav_link "><i class='bx bx-log-out' ></i>Logout</a></li>
                     <div class="userprofile" id="userprofile">
                       <div class="img">
-                        {% ifequal result.profile None %}
-                        <img src="{% static 'img/default.jpg' %}">
-                        {% else %}
+                        {% if result.profile %}
                         <img src="{{result.profile.url}}" >
-                        {% endifequal %}
+                        {% else %}
+                        <img src="{% static 'img/default.jpg' %}">
+                        {% endif %}
                         <div class="upload-img">
                           <p id="upload">+</p>
                         </div>
@@ -71,8 +71,10 @@
                       </div>
                     </div>
                     {% else%}
-                    <li class="nav__item"><a href="{% url 'account_login' %}" class="nav_link">Login</a></li>
-                    <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
+                    <div class="unauth">
+                        <li class="nav__item" id="login-cont"><a href="{% url 'account_login' %}" class="nav_link login">Login</a></li>
+                        <li class="nav__item"><a href="{% url 'account_signup' %}" class="nav_link btn">Create an account</a></li>
+                    </div>
                     {% endif %}
                 </ul>
             </div>
@@ -83,20 +85,33 @@
         </nav>
         <div class="modal" id="popupmodal">
             <div class="modal-content">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="upateInfomodal">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="text" name="email" placeholder="Email">
-                        <input type="text" name="phonenumber" placeholder="Phonenumber">
+                <h1 class="modal-title">Account Settings</h1>
+                <div class="userprofilearea">
+                    
+                    <div class="userProfileImg">
+                        
+                        {% if result.profile %}
+                        <img src="{{result.profile.url}}" alt="">
+                        {% else %}
+                        <img src="{% static 'img/default.jpg' %}" alt="">
+                        {% endif %}
                     </div>
-                    <input type="file" name="profile_upload" class="custom-file-input" id="filefield">
-                   
-                    <div class="updatebutton_container">
-                        <button type="submit">Save</button>
-                    </div>
-                  </form>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="upateInfomodal">
+                            <input type="text" name="username" placeholder="{{result.user.username}}">
+                            <input type="text" name="email" placeholder="{{result.user.email}}">
+                            <!--<input type="text" name="phonenumber" placeholder="Phonenumber">-->
+                        </div>
+                        <input type="file" name="profile_upload" class="custom-file-input" id="filefield">
+                    
+                        <div class="updatebutton_container">
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
                   <i class='bx bx-x' id="closeUploadPopup"></i>
+                </div>
+
 
             </div>
         </div>

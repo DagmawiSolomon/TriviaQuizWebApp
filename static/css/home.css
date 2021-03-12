@@ -85,6 +85,25 @@ li#profiledropdown-large{
     align-items: center;
     color: #8a8a8a;
 }
+#login-cont{
+    margin: 0.3rem 0rem;
+    margin-right: auto;
+    width: 100%;
+    font-size: 1.3rem;
+}
+.unauth{
+    margin: 2.5rem auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.login{
+    margin:1rem 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
 
    .nav__list{
         display: flex;
@@ -114,9 +133,10 @@ li#profiledropdown-large{
     border: 2px solid #3C3CC2;
     width: 190px;
     text-align: center;
-    margin: 0.5rem;
+    margin:1rem 0;
     font-size: 14pt;
     }
+
 
 }
 /*Show menu*/
@@ -630,7 +650,7 @@ li#profiledropdown-large{
     border-color: #3C3CC2;
   }
   .custom-file-input:active {
-    outline: 0;
+    outline: none;
   }
   .custom-file-input:active::before {
     background: #ddffdd; 
@@ -810,7 +830,27 @@ li#profiledropdown-large{
 input.custom-file-input {
     border: none;
 }
-
+/*update profile popup*/
+.userprofilearea{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    margin: 1rem 0;
+}
+.userProfileImg img{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 1rem 1.2rem;
+}
+.modal-title{
+    text-align:center;
+}
+.userProfileImg {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 /*=======tablet===========*/
 @media screen and (min-width:768px){
@@ -873,7 +913,7 @@ input.custom-file-input {
         grid-template-columns: 1fr 1fr 1fr;
      }
      .modal-content {
-        width: 70%;
+        width: 55%;
         margin: 10% auto;
     }
         .user-info{
@@ -932,6 +972,10 @@ input.custom-file-input {
         height: 80px;
         border-radius: 50%;
         position: relative;
+    }
+    .unauth{
+        display: flex;
+        flex-direction: row;
     }
 }
 
@@ -999,7 +1043,7 @@ input.custom-file-input {
         display: none;
     }
     .hero__img img{
-        width: 94%;
+        width: 110%;
     }
     .hero__data{
         width: 100%;
@@ -1071,7 +1115,7 @@ input.custom-file-input {
         color: #3C3CC2;
     }
     .modal-content {
-        width: 45%;
+        width: 50%;
         padding:30px;
         margin: 8% auto;
     }
@@ -1096,6 +1140,7 @@ input.custom-file-input {
     .upateInfomodal{
         display: flex;
         flex-direction: column;
+        margin: 0 0.5rem;
     }
     .upateInfomodal input{
         font-family: "poppins", sans-serif;
@@ -1103,7 +1148,7 @@ input.custom-file-input {
         margin: 1rem auto;
         border: 2px solid #8a8a8a;
         border-radius: 8px;
-        width: 71%;
+        width: 100%;
         color: #141414;
         outline: none;
     }
@@ -1133,6 +1178,10 @@ input.custom-file-input {
     }
     input.custom-file-input {
         border: none;
+    }
+    .unauth{
+        display: flex;
+        flex-direction: row;
     }
 
 
