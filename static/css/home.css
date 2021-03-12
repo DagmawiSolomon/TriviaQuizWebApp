@@ -58,10 +58,10 @@ li#profiledropdown-large{
     display: none;
 }
 #profiledropdown-small img{
-    width: 110px;
-    height: auto;
-    clip-path: circle();
-    margin: 0rem 0.5rem;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0rem;
     
 }
 .image_upload_modal{
@@ -699,7 +699,7 @@ li#profiledropdown-large{
     justify-content: center;
     position: absolute;
     top: 70px;
-    left: 115px;
+    left: 100px;
 }
 .logout-link{
     margin: 1rem 0;
