@@ -248,6 +248,7 @@ html{
    stroke: #3C3CC2;
    fill: none;
    animation: countdown 15s linear infinite forwards;
+
  }
  .btn{
    width: 80%;

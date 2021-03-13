@@ -20,7 +20,7 @@
     <section class="header">
         <a href="{% url 'home' %}"><i class='bx bx-left-arrow-alt'></i></a>
         <div id="countdown">
-            <div id="countdown-number">60</div>
+            <div id="countdown-number">09</div>
             <svg class="svg">
               <circle r="18" cx="20" cy="20"></circle>
             </svg>
@@ -123,6 +123,8 @@
         }
         else if(countdown < 10){
             countdown = "0" + countdown
+            countdownNumberEl.style.position = "absolute"
+            countdownNumberEl.style.left = "27px"
         }
         countdownNumberEl.textContent = countdown;
 
@@ -150,7 +152,7 @@ document.querySelectorAll('.choices_btn').forEach(item => {
                 item.style.color = "#721c24"
                 item.style.border = " 1px solid #f5c6cb"
             }
-            console.log(btn.length)
+
 
             for(i = 0; i < btn.length; i++){
                 btn[i].classList.add("disabled");
@@ -180,7 +182,6 @@ document.querySelectorAll('.choices_btn').forEach(item => {
     function startTimer () {
       tens++;
       responseTime.value = seconds
-      console.log(responseTime.value)
       if (tens > 99) {
         seconds++;
         tens = 0;
@@ -195,6 +196,14 @@ document.querySelectorAll('.choices_btn').forEach(item => {
             return false;
         });
         return true;
+    });
+    $(document).ready(function() {
+        $("form").submit(function() {
+            $(this).submit(function() {
+                return false;
+            });
+            return true;
+        });     
     });
 </script>
 </html>
