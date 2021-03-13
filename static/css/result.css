@@ -70,7 +70,7 @@ a{
     
 }
 /* The Modal (background) */
-.modal {
+.ads-container {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -83,7 +83,7 @@ a{
   }
 
   /* Modal Content/Box */
-  .modal-content {
+  .ad-content {
     background-color: #fefefe;
     position: relative;
     flex-direction: row;
@@ -94,18 +94,19 @@ a{
     width: 90%; /* Could be more or less, depending on screen size */
     height:90%;
   }
-  .modal-content h1{
+  .ad-content h1{
       margin:4rem 0rem 2rem 0rem;
       color: #fff;
       font-weight: 400;
       font-size: 17pt;
+      text-align: center;
   }
-  .modal-content p{
+  .ad-content p{
       margin:2rem auto;
       color: #FFFFFF;
       font-weight: 400;
   }
-  .close-btn{
+  .close-ad{
       display: none;
       opacity: 0;
       position: absolute;
@@ -125,7 +126,7 @@ a{
       display:flex;
       justify-content: center;
   }
-  .modal-content .btn_cta{
+  .ad-content .btn_cta{
     margin: 0 5px;
     padding: 0.5rem 1.5rem;
     width: 100px;
@@ -215,7 +216,7 @@ a{
         top:-74px;
         left:27px;
     }
-    .modal-content{
+    .ad-content{
         margin:12% auto;
     }
 
@@ -234,7 +235,7 @@ a{
     .img-container img{
         width: 50%;
     }
-    .close-btn{
+    .close-ad{
         position: absolute;
         top:-39px;
         left:27px;
@@ -249,7 +250,7 @@ a{
         top: -39px;
         left: 27px;
     }
-    .modal-content{
+    .ad-content{
         margin:6% auto;
     }
     .result{

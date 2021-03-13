@@ -237,7 +237,7 @@ a,p,h1,h2,h3,h4,h5,h6{
 .leaderBoard .circles{
     display: flex;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 1rem 0 3rem 0;
 }
 .leaderBoard h1{
     text-align: center;
@@ -249,8 +249,17 @@ a,p,h1,h2,h3,h4,h5,h6{
     margin: 0.5rem 0;
 }
 #score{
-    color:#3C3CC2
+    color:#3C3CC2;
+    text-align: center;
+    font-size: 14pt;
+    font-weight: 600;
 }
+p#points {
+    text-align: center;
+    font-size: 14pt;
+    color: #3c3cc2;
+    font-weight: 600;
+    }
 .table .card{
     margin: 0.7rem;
     background-color: #fbfbfb;
@@ -602,7 +611,13 @@ input.custom-file-input {
     justify-content: center;
     width: 100%;
 }
-
+.score-container{
+    display: flex;
+    justify-content:space-between;
+}
+.score-container div {
+    margin: 0rem 1.5rem;
+}
 /*=======tablet===========*/
 @media screen and (min-width:768px){
 

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--====styling=====-->
     <link rel="stylesheet" href="{% static 'css/statistics.css' %}">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
     <!--===Poppins===-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -134,7 +135,17 @@
         <img src="{% static 'img/default.jpg' %}" />
         {% endif %}
          <h1>{{r.user.username}}</h1>
-         <h1 id="score"><i class='bx bx-coin-stack'> </i>{{r.score}}</h1>
+         <div class="score-container">
+           <div>
+            <h1>Score</h1>
+            <p id="score">{{r.score}}</p>
+           </div>
+           <div>
+             <h1>Points</h1>
+             <p id="points">{{point}}/{{q_count}}</p>
+           </div>
+         </div>
+         
        </div>
       </div>
       <div class="table">
@@ -159,6 +170,31 @@
 
 
    </section>
+   <section class="ad">
+    <div id="myModal" class="ads-container">
+
+        <!-- Modal content -->
+        <div class="ad-content">
+            <div id="countdown-number">60</div>
+            <svg class="svg">
+                <circle r="18" cx="20" cy="20"></circle>
+              </svg>
+            <i class='bx bx-x close-ad' ></i>
+            <div class="img-container">
+                <img src="{% static 'img/gym-fitness-flyer-template-with-grunge-shapes_115083-33.jpg' %}" alt="">
+            </div>
+            <div class="logo">
+
+            </div>
+              <h1>Quality Graphics & Logos <span>AD</span></h1>
+              <p>Logo Design|Truck-Boat-Car-Trailer Graphics|Since 2002</p>
+              <div class="btn-container">
+                <a href="#" class="btn_cta">Open</a>
+              </div>
+        </div>
+
+      </div>
+    </section>
 </body>
 <script src="{% static 'JS/main.js' %}"></script>
 <script>
@@ -203,6 +239,33 @@ closeUpload.addEventListener("click", function(){
 editProfile.addEventListener("click", function(){
     popupModal.style.display = "block"
 })
+var countdownNumberEl = document.getElementById('countdown-number');
+var countdown = 15;
+var svgCircle = document.querySelector(".svg circle")
+var closeAdButton = document.querySelector(".close-ad")
+var adPopup = document.querySelector(".ad")
+
+countdownNumberEl.textContent = countdown;
+
+setInterval(function() {
+    countdown = -- countdown
+    if (countdown <= 0){
+        countdownNumberEl.style.display = "none"
+        closeAdButton.style.opacity = "1"
+        closeAdButton.style.display = "block"
+        svgCircle.style.display = "none"
+        countdown = "0"
+        closeAdButton.addEventListener("click", function(){
+            adPopup.style.display = "none"
+        })
+    }
+    else if(countdown < 10){
+        countdown = "0" + countdown
+    }
+    countdownNumberEl.textContent = countdown;
+
+
+}, 1000);
 
 </script>
 </html>

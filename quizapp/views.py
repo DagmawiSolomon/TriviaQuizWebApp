@@ -85,7 +85,7 @@ def quiz(request, pk):
                 set_result_tocompleted = Result.objects.get(user=request.user, quiz=quiz)
                 set_result_tocompleted.completed = True
                 set_result_tocompleted.save()
-                return redirect("/result")
+                return redirect("/leaderboard")
             else:
                 answer = Answer.objects.filter(text=answer_inputted)
                 if answer[0].correct:
@@ -109,7 +109,7 @@ def quiz(request, pk):
                 set_result_tocompleted = Result.objects.get(user=request.user, quiz=quiz)
                 set_result_tocompleted.completed = True
                 set_result_tocompleted.save()
-                return redirect("/result")
+                return redirect("/leaderboard")
         else:
             if answer_inputted != None:
                 answer = Answer.objects.filter(text=answer_inputted)
@@ -151,21 +151,25 @@ def quiz(request, pk):
         return render(request, "quizapp/quiz.html", context)
 
 
-def result(request):
-    quiz = Quiz.objects.get(active=True, completed=False)
-    questions = Questions.objects.filter(quiz=quiz)
-    q_count = questions.count()
-    result = Result.objects.get(user=request.user, quiz=quiz)
-    results = result.score
-    point = result.points
-    context = {"result": results, "point": point, "q_count":q_count}
-    return render(request, "quizapp/result.html", context)
+#def result(request):
+    #quiz = Quiz.objects.get(active=True, completed=False)
+    #questions = Questions.objects.filter(quiz=quiz)
+    #q_count = questions.count()
+    #result = Result.objects.get(user=request.user, quiz=quiz)
+    #results = result.score
+    #point = result.points
+    #context = {"result": results, "point": point, "q_count":q_count}
+    #return render(request, "quizapp/result.html", context)
 
 
 def leaderboard(request):
     quiz = Quiz.objects.get(active=True, completed=False)
+    questions = Questions.objects.filter(quiz=quiz)
+    q_count = questions.count()
     results = Result.objects.filter(completed=True).order_by("-score")
     result = Result.objects.get(user=request.user)
+    score = result.score
+    points = result.points
     if request.user.is_authenticated:
         if request.method == 'POST' and request.FILES['profile_upload']:
             profile_upload = request.FILES['profile_upload']
@@ -173,15 +177,15 @@ def leaderboard(request):
                 result = Result.objects.get(user = request.user, quiz = quiz)
                 result.profile = profile_upload
                 result.save()
-                context = {'result': results, "r":result}
+                context = {'result': results, "r":result, "q_count":q_count, "score":score, "point": points}
                 return render(request, "quizapp/statistics.html", context)
             else:
                 result = Result(user=request.user, quiz=quiz)
                 result.save()
-                context = {'result': results,  "r":result}
+                context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points}
                 return render(request, "quizapp/statistics.html", context)
             
     else:
         return redirect("/")
-    context = {'result': results,  "r":result}
+    context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points}
     return render(request, "quizapp/statistics.html", context)
