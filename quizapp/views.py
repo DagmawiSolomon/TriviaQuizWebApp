@@ -1,19 +1,18 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-from .models import Quiz, Questions, Answer, Result
+from .models import Quiz, Questions, Answer, Result,Advertisement
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from .forms import ImageForm
 import datetime
 import time
 
 # create your views here.
 
 def home(request):
+
     quiz = Quiz.objects.get(active=True, completed=False)
-    # for q in quiz.question.all():
-    #     print(q)
+    silver = Advertisement.objects.get(rank="Silver") 
     start = quiz.start_date
     end = quiz.end_date
     start_month = start.strftime("%b")
@@ -45,7 +44,7 @@ def home(request):
             context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
                        "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
                        "end_day": end_day, "end_year": end_year, "end_month": end_month,
-                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result}
+                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result, "silver": silver}
             return render(request, "quizapp/home.html", context)
         else:
             result = Result(user=request.user, quiz=quiz, score=0)
@@ -53,12 +52,12 @@ def home(request):
             context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
                        "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
                        "end_day": end_day, "end_year": end_year, "end_month": end_month,
-                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result}
+                       "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "result": result, "silver": silver}
             return render(request, "quizapp/home.html", context)
     context = {"quiz": quiz, "start_month": start_month, "start_day": start_day, "start_year": start_year,
                "start_hour": start_hour, "start_minute": start_minute, "start_second": start_second,
                "end_day": end_day, "end_year": end_year, "end_month": end_month,
-               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second}
+               "end_hour": end_hour, "end_minute": end_minute, "end_second": end_second, "silver": silver}
     return render(request, "quizapp/home.html", context)
 
 
@@ -164,6 +163,8 @@ def quiz(request, pk):
 
 def leaderboard(request):
     quiz = Quiz.objects.get(active=True, completed=False)
+    silver = Advertisement.objects.get(rank="Silver") 
+    gold = Advertisement.objects.get(rank = "Gold")
     questions = Questions.objects.filter(quiz=quiz)
     q_count = questions.count()
     results = Result.objects.filter(completed=True).order_by("-score")
@@ -174,18 +175,21 @@ def leaderboard(request):
         if request.method == 'POST' and request.FILES['profile_upload']:
             profile_upload = request.FILES['profile_upload']
             if results.exists():
-                result = Result.objects.get(user = request.user, quiz = quiz)
+                result = Result.objects.get(user = request.user, quiz=quiz)
                 result.profile = profile_upload
                 result.save()
-                context = {'result': results, "r":result, "q_count":q_count, "score":score, "point": points}
+                context = { 'result': results, "r": result, "q_count": q_count, "score": score, "point": points,
+                           "silver":silver, "Gold":gold}
                 return render(request, "quizapp/statistics.html", context)
             else:
                 result = Result(user=request.user, quiz=quiz)
                 result.save()
-                context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points}
+                context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points,
+                           "silver":silver, "Gold": gold}
                 return render(request, "quizapp/statistics.html", context)
             
     else:
         return redirect("/")
-    context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points}
+    context = {'result': results,  "r":result, "q_count":q_count, "score":score, "point": points,
+                "silver":silver, "Gold": gold}
     return render(request, "quizapp/statistics.html", context)

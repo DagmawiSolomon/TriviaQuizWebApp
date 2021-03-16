@@ -851,7 +851,81 @@ input.custom-file-input {
     justify-content: center;
     width: 100%;
 }
+.phone_numInput{
+    display: flex;
+    align-items: center;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+   
+}
+.phoneInput-container{
+    background-color: #323031;
+    border-radius: 8px;
+    width: 28%;
+    margin: 2rem auto;
+    padding: 3.2rem 0;
+   
+}
+.phoneInput-container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3.5rem auto;
+    border: 2px solid #565656;
+    border-radius: 8px;
+    width: fit-content;
+    padding: 0.5rem;
+}
 
+.phoneInput-container h1{
+    color: #ffffff;
+    text-align: center;
+    margin: 1.5rem;
+}
+.phoneInput-container .pdescription{
+    margin: 2.5rem auto;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+.country-code{
+    color: #E0E0E0;
+    margin: 0 1rem;
+}
+.phoneInput-container input{
+    outline: none;
+    margin: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #565656;
+    width: 35%;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    background-color: #323031;
+    font-family: "poppins", sans-serif;
+    transition: border-bottom 0.2s ease-in;
+}
+.phoneInput-container :focus{
+    border-bottom: 2px solid #fff;
+}
+.phoneInput-container div img{
+    width: 20px;
+    height: 20px;
+}
+.phonebutton{
+    background-color: #3C3CC2;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    color: #fff;
+    margin: 3rem auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
 /*=======tablet===========*/
 @media screen and (min-width:768px){
     .hero__title{
@@ -887,7 +961,7 @@ input.custom-file-input {
         flex-direction: row-reverse;
     }
     #play{
-    font-size:16pt;
+    font-size:14pt;
     position: relative;
     top:0;
     left:0;

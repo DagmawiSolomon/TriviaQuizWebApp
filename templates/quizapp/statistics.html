@@ -112,16 +112,17 @@
 
         </div>
     </header>
+    <p>{{adv.name}}</p>
     <section class="ads">
         <div class="ad-silver">
           
             <div class="img">
-                <img src="{% static 'img/logo-colour.d534143b.svg' %}" alt="">
+                <img src="{{silver.image.url}}" alt="">
             </div>
             <div class="description">
-                <h2 class="data">Coca cola <span class="close"><i class='bx bx-x'></i></span></h2>
-                <p class="desc">The essential app for every designer. Generate and collect beautiful color palettes on the go.</p>
-                <a href="">Visit now</a>
+                <h2 class="data">{{silver.name}}<span class="close"><i class='bx bx-x'></i></span></h2>
+                <p class="desc">{{ silver.text}}</p>
+                <a href="{{silver.cta_link}}" target="blank">{{silver.cta}}</a>
             </div>
         </div>
     </section>
@@ -181,15 +182,15 @@
               </svg>
             <i class='bx bx-x close-ad' ></i>
             <div class="img-container">
-                <img src="{% static 'img/gym-fitness-flyer-template-with-grunge-shapes_115083-33.jpg' %}" alt="">
+                <img src="{{Gold.image.url}}" alt="">
             </div>
             <div class="logo">
 
             </div>
-              <h1>Quality Graphics & Logos <span>AD</span></h1>
-              <p>Logo Design|Truck-Boat-Car-Trailer Graphics|Since 2002</p>
+              <h1>{{Gold.name}}</h1>
+              <p>{{Gold.text}}</p>
               <div class="btn-container">
-                <a href="#" class="btn_cta">Open</a>
+                <a href="{{Gold.cta_link}} " target="blank" class="btn_cta">{{Gold.cta}}</a>
               </div>
         </div>
 
@@ -240,7 +241,7 @@ editProfile.addEventListener("click", function(){
     popupModal.style.display = "block"
 })
 var countdownNumberEl = document.getElementById('countdown-number');
-var countdown = 15;
+var countdown = {{Gold.duration}};
 var svgCircle = document.querySelector(".svg circle")
 var closeAdButton = document.querySelector(".close-ad")
 var adPopup = document.querySelector(".ad")

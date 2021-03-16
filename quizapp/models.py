@@ -1,9 +1,12 @@
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
+ 
 
 
+
+    
 class Quiz(models.Model):
     name = models.CharField(max_length=120, default="Name of the quiz")
     topic = models.CharField(max_length=120,  default="Topic of the quiz")
@@ -50,6 +53,7 @@ class Answer(models.Model):
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length = 100, blank=True, null=True)
     profile = models.ImageField(upload_to='profile_pic',blank=True, null=True)
     score = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
@@ -57,3 +61,21 @@ class Result(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Advertisement(models.Model):
+    Rankings = (
+        ("Gold", "Gold"),
+        ("Silver", "Silver"),
+    )
+    name = models.CharField(max_length=100, blank=True, null=True)
+    image = models.FileField(upload_to="ads", blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    cta = models.CharField(max_length=100, blank=True, null=True)
+    cta_link = models.CharField(max_length=100, blank=True, null=True)
+    duration = models.IntegerField(default=0, blank=True, null=True)
+    rank = models.CharField(max_length=100, choices=Rankings, blank=True, null=True)
+    active = models.BooleanField(default=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name}|Active:{self.active}"
